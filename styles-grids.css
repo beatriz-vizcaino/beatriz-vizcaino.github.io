@@ -776,11 +776,13 @@ footer a {
 
 	.text {
 		padding-left: 20px;
+		font-family: 'Roboto', sans-serif;
 	}
 
 	.text h3 {
 	padding-bottom: 12px;
 	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
 	}
 
 	.text h2 {
@@ -788,6 +790,7 @@ footer a {
 		font-size: 40px;
 		line-height: 52px;
 		margin-bottom: 12px;
+
 	}
 
 
