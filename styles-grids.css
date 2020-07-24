@@ -97,7 +97,7 @@ header h1 {
   letter-spacing: 1.5px;
 	color: black;
 /*	color: #FF8A9D;*/
-	font-family: 'Montserrat';
+	font-family: 'Montserrat', sans-serif;
 }
 
 span {
@@ -130,7 +130,7 @@ header a {
 
 
 h2 {
-	font-family: 'Montserrat';
+	font-family: 'Montserrat', sans-serif;
   font-size: 28px;
 	font-weight: bold;
   margin-bottom: 15px;
@@ -159,7 +159,7 @@ h4 {
   letter-spacing: 1.5px;
 	color: black;
 /*	color: #FF8A9D;*/
-	font-family: 'Montserrat';
+	font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -364,7 +364,7 @@ li{
 }
 
 .text {
-	font-family:'Roboto';
+	font-family:'Roboto', sans-serif;
 	padding-left: 40px;
 	/*padding: 40px;*/
 }
