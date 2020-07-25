@@ -488,7 +488,7 @@ footer a {
   and (max-device-width: 667px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
-		.wrapper {
+	.wrapper {
     width: 100%;
 
 	}
@@ -522,7 +522,7 @@ footer a {
 	}
 
 	.details {
-		line-height: 3em;
+		line-height: 2em;
 	}
 
 	.individual-post {
