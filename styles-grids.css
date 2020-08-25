@@ -65,7 +65,7 @@ body {
   color: #2E2E2E;
   background-color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: 20px; /**16px**/
+  font-size: 16px; /**16px**/
   line-height: 1.5em;
   letter-spacing: 1px;
 
@@ -94,6 +94,7 @@ header h1 {
   font-size: 60px;
   font-weight: bold;
   margin-top: 5px;
+	margin-bottom: 16px;
   line-height: 60px;
   letter-spacing: 1.5px;
 	color: black;
@@ -341,13 +342,21 @@ footer div {
 }
 
 
+header .details {
+	font-size: 25px;
+	 line-height: 36px;
+	 font-weight: lighter;
+	 font-family: "Roboto", sans-serif;
+
+}
 
 
 p.details {
-	 	font-size: 25px;
-     line-height: 36px;
-     font-weight: lighter;
+	 	/*font-size: 25px;
+
+     font-weight: lighter;*/
      font-family: "Roboto", sans-serif;
+		 line-height: 1.5em;
 
 
 }
@@ -460,7 +469,7 @@ border-radius: 0 0 8px 8px;*/
 
 }
 .case-studies a{
-	font-weight: lighter;
+	/*font-weight: lighter;*/
 }
 
 .icon-container {
