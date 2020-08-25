@@ -78,7 +78,7 @@ a, li {
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 80px;
   font-weight: 700;
   margin-top: 5px;
 	margin-bottom: 10px;
@@ -208,7 +208,16 @@ header a {
 	display: inline;
 }
 
+.subs {
+	display: flex;
+	margin-bottom: 30px;
+}
 
+hr {
+	width: 30px;
+	border-top: 2px black solid;
+	margin-right: 10px;
+}
 
 
 /*** Type of Project Section Headers ***/
