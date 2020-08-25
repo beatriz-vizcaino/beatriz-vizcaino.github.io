@@ -78,14 +78,15 @@ a, li {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 60px;
   font-weight: 700;
   margin-top: 5px;
 	margin-bottom: 10px;
-  line-height: 46px;
+  line-height: 66px;
   letter-spacing: 1.5px;
 	color: black;
 	font-family: 'Montserrat', sans-serif;
+	padding-bottom:10px;
 }
 
 h2 {
@@ -167,6 +168,7 @@ nav li a {
 	font-weight:normal;
 	line-height: 1em;
 	text-decoration: none;
+
 }
 
 
@@ -180,7 +182,7 @@ nav li a {
 /*** Header ***/
 
 header {
-	margin-bottom: 40px;
+	margin-bottom: 100px;
 }
 
 
@@ -189,17 +191,18 @@ span {
 }
 
 
-/*header p {
-	padding-top: 10px;
-	font-size: 1.1250em;
-	line-height: 1.6em;
-}*/
+header p {
+	font-size: 25px;
+  line-height: 36px;
+  font-weight: lighter;
+  font-family: "Roboto", sans-serif;
+}
 
-header p span a{
+/*header p span a{
 	color: #000;
   text-decoration: none;
   box-shadow: inset 0 -0.6em #FFE1E6;
-}
+}*/
 
 header a {
 	display: inline;
@@ -250,13 +253,13 @@ header a {
 
 
 .anchors {
-	width: 100%;
+	width: 90%;
   display: flex;
   justify-content: flex-end;
 	}
 
 .anchors a {
-	width: 30%;
+	width: 20%;
 }
 
 #name {
@@ -306,7 +309,7 @@ color: #FF8A9D;
 
 	width: 100%;
 	height: 400px;
-	margin-bottom: 60px;
+	margin-bottom: 100px;
 	display: flex;
 
 }
