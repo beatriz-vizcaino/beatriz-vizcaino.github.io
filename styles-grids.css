@@ -81,6 +81,10 @@ a, li {
 	text-decoration: none;
 }
 
+.case-studies img {
+	width: 100%;
+}
+
 /*img {
 	width:100%;
 }
@@ -135,7 +139,7 @@ h2 {
 	font-family: 'Montserrat';
   font-size: 28px;
 	font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 	color: #2E2E2E;
 	line-height: 32px;
 	/*margin-bottom: 8px;
@@ -147,7 +151,7 @@ h2 {
 h2 {
 	/*margin-bottom: 0.5em;*/
 	/*font-family: 'Roboto';*/
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 	padding-right: 10px;
 	color: black;
 }
@@ -163,6 +167,23 @@ h4 {
 /*	color: #FF8A9D;*/
 	font-family: 'Montserrat';
 
+}
+
+
+
+.subs {
+	margin-bottom: 30px;
+}
+
+.subs-2 {
+	margin-top: 100px;
+	margin-bottom: 30px;
+}
+
+hr {
+	border-top: 3px solid #ff8a9d;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .content-sections{
@@ -214,9 +235,9 @@ header {
 }
 
 .leadership div {
-	border-left: 4px solid #FFE1E6;
-	padding-left: 15px;
-	width: 50%;
+	/*border-left: 4px solid #FFE1E6;
+	padding-left: 15px;*/
+	width: 48%;
 }
 
 #read-more-three {
@@ -280,7 +301,7 @@ nav li a {
 	}
 
 .anchors a {
-	width: 30%;
+	width: 20%;
 }
 
 #name {
@@ -379,6 +400,7 @@ li{
 .text {
 	font-family:'Roboto';
 	padding-left: 40px;
+	width: 60%;
 	/*padding: 40px;*/
 }
 
@@ -404,7 +426,7 @@ h3 {
 	text-transform:uppercase;
 	font-size: 14px;
 	/*margin-top: 20px;*/
-	color: #3090EC;
+	color: black;
 	letter-spacing: 1.5px;
 	margin-bottom: 10px;
 }
@@ -533,21 +555,6 @@ border-radius: 0 0 8px 8px;*/
 
 
 
-.other-writing {
-	font-size: 25px;
-	line-height: 40px;
-	width: 1024px;
-	margin: auto;
-}
-
-.other-writing h2 {
-	padding-top: 50px;
-	padding-bottom: 30px;
-}
-
-.other-writing li a{
-font-size: 20px;
-}
 
 .final {
 	background-color: #FFF4F6;
@@ -604,6 +611,11 @@ header h1 {
 	line-height: 40px;
 }
 
+.text {
+	padding-top:8px;
+	padding-left: 0px;
+}
+
 .text h2 {
 	margin-bottom: 10px;
 	margin-top: 15px;
@@ -613,6 +625,7 @@ header h1 {
 
 .text h3 {
     margin-top: 25px;
+		margin-bottom: 20px;
     padding-right: 10px;
     font-size: 12px;
     letter-spacing: 1.2px;
@@ -680,8 +693,8 @@ header p {
 }
 
 .text {
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 0px;
+	width: 100%
 }
 
 .text h3 {
