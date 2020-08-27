@@ -745,6 +745,7 @@ footer a {
     padding-right: 20px;
 	}
 
+
 	h2 {
 		font-size: 40px;
     margin-bottom: 30px;
@@ -752,7 +753,7 @@ footer a {
 	}
 
 		header h1 {
-			line-height: 1.5em;
+			line-height: 1.2em;
 			margin-bottom:24px;
 		}
 
@@ -799,7 +800,7 @@ footer a {
 	}
 
 	.text {
-		padding-left: 20px;
+		padding-left: 0px;
 	}
 
 	.text h3 {
@@ -831,6 +832,7 @@ footer a {
 
  p.details {
 	 font-size: 1.2em;
+	 line-height: 2.5em;
  }
 
 	.text a, .leadership a {
