@@ -745,10 +745,6 @@ footer a {
     padding-right: 20px;
 	}
 
-	body {
-		font-size: 16px;
-	}
-
 	.case-studies {
 		display: block;
 	}
@@ -765,11 +761,7 @@ footer a {
 			margin-bottom:24px;
 		}
 
-		header p {
-			font-size: 1em;
-			line-height: 1.8em;
 
-		}
 
 		nav {
 			font-size: 30px;
@@ -787,7 +779,7 @@ footer a {
 
 		.anchors a {
 			padding-right: 20px;
-    	font-size: 30px;
+
 		}
 
 
@@ -810,17 +802,15 @@ footer a {
 	.text {
 		padding-left: 0px;
 		width: 100%;
-		font-size: 16px;
 	}
 
 	.text h3 {
 	padding-bottom: 12px;
-	font-size: 14px;
+
 	}
 
 	.text h2 {
 		margin-top: 30px;
-		font-size: 40px;
 		line-height: 52px;
 		margin-bottom: 60px;
 	}
