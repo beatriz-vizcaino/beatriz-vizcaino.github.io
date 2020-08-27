@@ -837,7 +837,7 @@ footer a {
 
  p.details {
 
-	line-height: 2.6em;
+	/*line-height: 2.6em;*/
   font-weight: lighter;
 	margin-bottom: 40px;
 	}
