@@ -854,11 +854,7 @@ footer a {
 
 
 	hr {
-    border-top: 5px solid #ff8a9d;
-    margin-top: 3px;
-    margin-bottom: 8px;
-		width: 13%;
-    margin-right: 90%;
+    display: none;
 }
 
 
@@ -867,9 +863,7 @@ footer a {
 
 }
 
-.subs-2 hr {
-	width: 24%;
-}
+
 
 
 
