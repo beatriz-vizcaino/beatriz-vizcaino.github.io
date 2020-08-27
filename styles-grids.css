@@ -837,6 +837,7 @@ footer a {
 	 font-size: 25px;
   	font-weight: lighter;
     font-family: "Roboto", sans-serif;
+		width: 100%;
  }
 
 	.text a, .leadership a {
