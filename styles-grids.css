@@ -776,6 +776,14 @@ footer a {
 		margin-bottom: 60px;
 	}
 
+	.subs,  {
+		width: 5%;
+	}
+
+	.subs-2 {
+		width: 10%;
+	}
+
 /*
 	h2 {
 		/*font-size: 40px;
