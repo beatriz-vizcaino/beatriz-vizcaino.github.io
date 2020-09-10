@@ -264,7 +264,7 @@ img {
 
 .highlights  {
 	margin-top: 150px;
-	display: flex;
+	/*display: flex;*/
 }
 
 .highlights-2 {
@@ -273,12 +273,13 @@ img {
 }
 
 .highlights .explanation {
-	width: 40%;
+	width: 62%;
 	margin-right: 40px;
+	margin-bottom: 60px;
 }
 
 .image-left {
-	width: 70%;
+	width: 100%;
 	/*margin-top: -50px;*/
 }
 
@@ -586,6 +587,7 @@ img {
 .highlights .explanation {
 	width: 100%;
 	margin-right: 0px;
+
 	}
 
 .image-left {
@@ -607,6 +609,7 @@ section img {
 .explanation-2 {
 	width: 100%;
 	margin-top: 60px;
+
 }
 
 
