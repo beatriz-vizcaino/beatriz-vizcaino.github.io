@@ -1,0 +1,669 @@
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*** END OF RESET***/
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+/*** Global Styles***/
+
+body {
+  color: #161925;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px; /**16px**/
+  line-height: 1.5em;
+  letter-spacing: 1px;
+	font-size: 16px;
+	width: 100%;
+
+}
+
+a, li {
+  list-style-type: none;
+  color: #141B41;
+  /*display: block;*/
+	/*line-height: 2em;*/
+	font-weight: normal;
+	text-decoration: none;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: bold;
+  margin-top: 20px;
+	margin-bottom: 10px;
+  line-height: 66px;
+  letter-spacing: 1.5px;
+	color: black;
+
+}
+
+h3 {
+	/*font-family: 'Montserrat';*/
+	text-transform:uppercase;
+	font-size: 14px;
+	/*margin-top: 20px;*/
+	letter-spacing: 5px;
+	font-family: "Roboto", sans-serif;
+	font-weight:400;
+	color: #2B2823;
+	margin-bottom: 30px;
+}
+
+ol li{
+	list-style-type: disc;
+	padding-bottom: 10px;
+}
+
+.wrapper {
+	margin:auto;
+	background-color: rgba(253, 232, 235);
+	height: 1000px;
+}
+
+
+
+
+
+
+header {
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+header img {
+	width: 100%;
+	margin-top: 30px;
+}
+
+header p {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.introduction {
+	display: flex;
+	margin-top: 40px;
+}
+
+.context {
+	width: 60%;
+	padding-right: 70px;
+}
+
+.role-intro {
+	width: 40%;
+}
+
+.role {
+	margin-bottom: 60px;
+}
+
+
+section {
+ margin-bottom: 100px;
+
+}
+
+.explanation p {
+	/*line-height: 26px;*/
+
+}
+
+
+.centro p {
+	text-align: center;
+}
+
+section img {
+	width: 100%;
+	/*margin-top: 60px;*/
+}
+
+img {
+	/*margin-bottom: 30px;*/
+}
+
+.three {
+	margin-bottom: 60px;
+}
+
+
+.three div {
+	width: 80%;
+}
+
+.explanation {
+	margin-bottom: 1.77777777778em;
+}
+
+.context p {
+	font-size: 25px;
+	line-height: 36px;
+	font-weight: lighter;
+	font-family: "Roboto", sans-serif;
+}
+
+.four {
+	display: flex;
+	margin-top: 150px;
+	/*margin-bottom: 150px;*/
+}
+
+.left {
+	width: 40%;
+}
+
+.right {
+	width: 60%;
+  padding-right: 40px;
+}
+
+.side-by-side-images-one {
+	background-color: rgba(253, 232, 235);
+	height: auto;
+	display: flex;
+	justify-content:space-around;
+}
+
+.side-by-side-images-one p {
+	text-align: center;
+	width: 60%;
+  margin: auto;
+	padding-top: 30px;
+	padding-bottom: 50px;
+}
+
+.side-by-side-images {
+	background-color: rgba(48, 144, 236, 0.2);
+	height: 800px;
+	display: flex;
+	justify-content:space-around;
+}
+
+.side-by-side-images-one div {
+	width: 50%;
+	margin: auto;
+	margin-top:60px;
+}
+
+.side-by-side-images div {
+	width: 40%;
+	margin: auto;
+}
+
+#resize {
+	width: 50%;
+	margin-left: 22%;
+}
+
+.side-by-side-images img {
+	margin-bottom: 20px;
+}
+
+.side-by-side-images div p {
+	text-align: center;
+	padding: 10px 25px;
+
+}
+
+.highlights  {
+	margin-top: 150px;
+	display: flex;
+}
+
+.highlights-2 {
+	margin-top: 80px;
+	display: flex;
+}
+
+.highlights .explanation {
+	width: 40%;
+	margin-right: 40px;
+}
+
+.image-left {
+	width: 70%;
+	/*margin-top: -50px;*/
+}
+
+.image-right {
+	width: 70%;
+	margin-right: 50px;
+
+}
+
+.explanation-2 {
+	width: 40%;
+	margin-top: 20px;
+}
+
+.zoom-in {
+
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #2E2E2E;
+	line-height: 20px;
+	padding-bottom: 10px;
+
+}
+
+
+
+
+
+.extra-info {
+	width: 60%;
+}
+
+.list {
+	padding-top: 50px;
+	margin-left: 50px;
+	width: 80%;
+
+}
+
+
+
+.deep-content {
+	background-color: rgba(48, 144, 236, 0.2);
+	max-height:min-content;
+}
+
+.five {
+	max-width:1024px;
+	margin:auto;
+	padding-bottom: 100px;
+}
+
+.five .extra-info {
+	padding-top: 80px;
+}
+
+.extra-info ul {
+	padding-top: 50px;
+}
+
+.extra-info li {
+	list-style-type: disc;
+	margin-left: 50px;
+
+}
+
+.extra-info li span {
+	font-weight: bold;
+}
+
+.exploration-images {
+	padding-bottom: 60px;
+}
+
+
+.exploration-images img {
+  width: 100%;
+	max-height: auto;
+}
+
+
+
+.gif {
+	margin-top: 0px;
+	width: 30%;
+	margin-left: 30px;
+
+}
+
+
+
+
+footer {
+	background-color: black;
+	height: 300px;
+}
+
+footer div {
+	margin: auto;
+	width: 200px;
+  padding-top: 8%;
+}
+
+.next-project {
+	text-transform:uppercase;
+	font-size: 14px;
+	/*margin-top: 20px;*/
+	letter-spacing: 5px;
+	font-family: "Roboto", sans-serif;
+	font-weight:400;
+	color: white;
+	margin-bottom: 30px;
+
+
+}
+
+
+
+
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #2E2E2E;
+    line-height: 40px;
+
+}
+
+
+
+nav {
+	padding-top: 40px;
+	padding-bottom: 20px;
+	display: flex;
+	justify-content: flex-start;
+	font-size: 14px;
+	width: 100%;
+}
+
+
+nav li {
+	padding-top: 20px;
+}
+
+nav a {
+	/*width: 50%;*/
+}
+
+nav li a {
+  list-style-type: none;
+  color: #2E2E2E;
+  display: block;
+	font-weight:normal;
+	line-height: 1em;
+	text-decoration: none;
+}
+
+#name {
+	width:100%;
+}
+
+.about {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	padding-right: 10px;
+}
+
+
+a:hover {
+color: #FF8A9D;
+
+}
+
+nav li a:active {
+color: gray;
+
+}
+
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+
+}
+
+
+
+
+
+
+
+/* ----------- First Breakpoint ----------- */
+@media screen and (max-width:1024px) {
+
+	nav a {
+		width: 40%;
+	}
+
+	.container {
+		max-width: 90%;
+		margin: 0 auto;
+	}
+
+	.text {
+		padding-left: 30px;
+	}
+
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+
+
+.wrapper {
+	height: 550px;
+}
+
+.three div {
+	width: 100%;
+}
+
+header {
+	margin-bottom: 50px;
+}
+
+.introduction {
+	display: block;
+	margin-top:0px;
+}
+
+h1 {
+	font-size: 32px;
+	line-height: 36px;
+}
+.context {
+	width: 100%;
+	padding-right:0px;
+	padding-bottom: 60px;
+}
+
+.three {
+	margin-bottom: 0px;
+}
+
+.context p {
+	width: 100%;
+}
+
+.role-intro {
+	width: 100%;
+}
+
+section {
+	margin-bottom: 50px;
+}
+
+.centro {
+	font-size: 14px;
+}
+
+
+img {
+	margin-bottom: 0px;
+}
+
+.four {
+	display: block;
+	margin-top: 0px;
+	margin-bottom: 60px;
+}
+
+.left {
+	padding-top: 40px;
+}
+
+.right {
+	width: 100%;
+	padding-right: 0px;
+}
+
+.side-by-side-images {
+	display:block;
+	height: auto;
+}
+
+.side-by-side-images div {
+    width: 80%;
+	}
+
+.side-by-side-images-one p {
+	width: 90%;
+	padding-top:10px;
+}
+
+.highlights, .highlights-2 {
+	display: block;
+}
+
+.highlights .explanation {
+	width: 100%;
+	margin-right: 0px;
+	}
+
+.image-left {
+	width: 100%;
+	margin-top: 0px;
+
+}
+
+.image-right {
+	width: 100%;
+	margin-right: 0px;
+}
+
+section img {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.explanation-2 {
+	width: 100%;
+	margin-top: 60px;
+}
+
+
+.five .extra-info {
+	margin: auto;
+	padding-bottom: 60px;
+}
+
+.five {
+	padding-bottom: 0px;
+}
+
+.extra-info {
+	width: 90%;
+}
+
+.exploration-images {
+	margin-bottom: 60px;
+}
+
+.gif {
+	width: 50%;
+	margin-left: 25%;
+}
+
+footer div {
+	padding-top: 22%;
+}
+
+.list {
+	width: 80%;
+}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+
+	.extra-info {
+    width: 95%;
+    margin: auto;
+		padding-left: 0px;
+		padding-right: 0px;
+}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 1900px) {
+
+#resize {
+    width: 40%;
+		margin-left: 31%
+
+}
