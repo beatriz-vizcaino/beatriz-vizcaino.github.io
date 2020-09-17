@@ -205,6 +205,13 @@ img {
 	/*margin-bottom: 150px;*/
 }
 
+#five {
+	display: flex;
+	margin-top: 150px;
+	margin-bottom: 30px;
+
+}
+
 .left {
 	width: 40%;
 }
