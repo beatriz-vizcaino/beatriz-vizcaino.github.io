@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beatriz Vizcaino — Product Strategy & Design Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Color */
+    --paper:#f7f7f5;
+    --paper-raised:#fff;
+    --paper-inverse:#0a0a0a;
+    --ink-1:#0a0a0a;
+    --ink-2:#454956;
+    --ink-3:#666b7a;
+    --ink-4:#c7cad4;
+    --rule-1:#dcdfe6;
+    --rule-2:#edeff3;
+    --rule-strong:#0a0a0a;
+    --accent:#1E2FE0;
+    --accent-press:#161FB0;
+    --accent-wash:#e6e8fb;
+    --accent-ink:#fff;
+
+    /* Spacing */
+    --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;
+    --space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;--space-10:128px;--space-11:160px;
+    --gutter:32px;
+    --page-max:1440px;
+    --section-y:clamp(64px,9vw,128px);
+
+    /* Geometry */
+    --radius-0:0px;--radius-1:2px;--radius-2:4px;--radius-pill:999px;
+    --hairline:1px;--rule-heavy:2px;
+    --shadow-lift:0 14px 28px rgba(10,10,10,0.12);
+
+    /* Motion */
+    --ease-out:cubic-bezier(0.16,1,0.3,1);
+    --ease-inout:cubic-bezier(0.65,0,0.35,1);
+    --dur-1:120ms;--dur-2:240ms;--dur-3:520ms;
+
+    /* Type families */
+    --font-display: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --font-text: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
+    --font-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  }
+  @media (prefers-reduced-motion: reduce){
+    :root{--dur-1:0ms;--dur-2:0ms;--dur-3:0ms;}
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink-1);
+    font-family:var(--font-text);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--page-max);margin:0 auto;padding:0 var(--gutter);}
+  a{color:inherit;text-decoration:none;}
+
+  /* ---- Type scale ---- */
+  .t-hero{font-family:var(--font-display);font-weight:800;font-size:clamp(3rem,7.2vw,6.5rem);line-height:1.05;letter-spacing:-0.035em;}
+  .t-display-1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.5rem,5vw,4.25rem);line-height:0.96;letter-spacing:-0.03em;}
+  .t-display-2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,3.4vw,3rem);line-height:1;letter-spacing:-0.03em;}
+  .t-title{font-family:var(--font-display);font-weight:700;font-size:1.5rem;line-height:1.15;letter-spacing:-0.02em;}
+  .t-subtitle{font-family:var(--font-text);font-weight:500;font-size:1.25rem;line-height:1.35;}
+  .t-lead{font-family:var(--font-text);font-weight:400;font-size:clamp(1.125rem,1.5vw,1.375rem);line-height:1.5;}
+  .t-body{font-family:var(--font-text);font-weight:400;font-size:1.0625rem;line-height:1.6;}
+  .t-small{font-family:var(--font-text);font-weight:400;font-size:0.9375rem;line-height:1.55;}
+  .t-eyebrow{font-family:var(--font-text);font-weight:600;font-size:0.75rem;line-height:1.2;letter-spacing:0.12em;text-transform:uppercase;}
+  .t-label{font-family:var(--font-mono);font-weight:500;font-size:0.75rem;line-height:1.4;letter-spacing:0.04em;text-transform:uppercase;}
+  .t-index{font-family:var(--font-mono);font-weight:500;font-size:0.8125rem;line-height:1;}
+  .measure-lead{max-width:30ch;}
+  .measure-narrow{max-width:46ch;}
+  .measure-body{max-width:68ch;}
+
+  /* ---- Inverse theme ---- */
+  [data-theme="inverse"]{
+    --paper:var(--paper-inverse);
+    --paper-raised:#141414;
+    --ink-1:#ffffff;
+    --ink-2:#c7cad4;
+    --ink-3:#8f93a3;
+    --ink-4:#4a4d59;
+    --rule-1:rgba(255,255,255,0.18);
+    --rule-2:rgba(255,255,255,0.08);
+    --rule-strong:#ffffff;
+    background:var(--paper);
+    color:var(--ink-1);
+  }
+
+  /* ---- Nav ---- */
+  header.top{
+    border-bottom:var(--hairline) solid var(--rule-1);
+    position:sticky;top:0;background:var(--paper);z-index:50;
+    transition:background var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+  }
+  header.top.on-dark{background:transparent;border-bottom-color:transparent;}
+  .navrow{display:flex;align-items:center;justify-content:space-between;padding-top:var(--space-5);padding-bottom:var(--space-5);}
+  .logo{font-family:var(--font-display);font-weight:800;font-size:16px;letter-spacing:-0.01em;transition:color var(--dur-2) var(--ease-out);}
+  header.top.on-dark .logo{color:#fff;}
+  .btn{
+    background:var(--accent);color:var(--accent-ink);
+    padding:var(--space-3) var(--space-5);
+    border-radius:var(--radius-2);
+    font-family:var(--font-text);font-weight:700;font-size:0.875rem;
+    display:inline-block;
+    transition:background var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out);
+    border:none;
+  }
+  .btn:hover{background:var(--accent-press);transform:translateY(-1px);}
+
+  /* ---- Capabilities (restrained text list) ---- */
+  .capabilities-row{
+    font-family:var(--font-text);font-weight:400;
+    font-size:1rem;line-height:1.4;
+    letter-spacing:0;text-transform:none;
+    color:var(--ink-2);
+  }
+  .capabilities-row .sep{
+    display:inline-block;
+    width:4px;height:4px;
+    background:var(--ink-4);
+    border-radius:50%;
+    margin:0 var(--space-2);
+    vertical-align:middle;
+    font-size:0;
+    color:transparent;
+  }
+
+  /* ---- Hero ---- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    margin-top:calc(-1 * var(--nav-h,0px));
+    padding:calc(var(--space-10) + var(--nav-h,0px) - 40px) 0 calc(var(--section-y) + var(--space-5) - 20px - 40px);
+    border-bottom:var(--rule-heavy) solid var(--rule-strong);
+  }
+  .hero > .wrap{position:relative;z-index:1;}
+
+  /* Faint process-artifact grid tucked along the hero's right side, well clear of
+     the headline — a glimpse of the messy inputs, not a gallery. It dissolves into
+     the plain black hero on its own left edge (no card/box shape behind the type).
+     Decorative only (aria-hidden). The mask is percentage-based against this
+     element's own box, so it scales with the hero rather than fixed pixel edges. */
+  .hero-grid-bg{
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    /* No explicit width: right is set and left is auto, so this shrink-wraps to
+       its child's own rendered size (see .hero-grid-bg img below) — the container's
+       physical edge and the image's physical edge are the same edge, by construction.
+       That edge is real, uncropped image content (not empty space), and the mask
+       below is tuned so that content has already faded to essentially nothing by
+       the time it gets there — so there is nothing left to reveal a boundary. */
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(295deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.72) 5.916%, rgba(0,0,0,0.58) 12.571%, rgba(0,0,0,0.44) 19.226%, rgba(0,0,0,0.32) 26.621%, rgba(0,0,0,0.22) 34.016%, rgba(0,0,0,0.14) 41.411%, rgba(0,0,0,0.09) 48.806%, rgba(0,0,0,0.05) 56.2%, rgba(0,0,0,0.025) 62.856%, rgba(0,0,0,0.01) 68.032%, rgba(0,0,0,0.003) 71.73%, transparent 73.948%, transparent 100%);
+    mask-image:linear-gradient(295deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.72) 5.916%, rgba(0,0,0,0.58) 12.571%, rgba(0,0,0,0.44) 19.226%, rgba(0,0,0,0.32) 26.621%, rgba(0,0,0,0.22) 34.016%, rgba(0,0,0,0.14) 41.411%, rgba(0,0,0,0.09) 48.806%, rgba(0,0,0,0.05) 56.2%, rgba(0,0,0,0.025) 62.856%, rgba(0,0,0,0.01) 68.032%, rgba(0,0,0,0.003) 71.73%, transparent 73.948%, transparent 100%);
+  }
+  .hero-grid-bg img{
+    /* height fixed, width auto: the browser scales the image proportionally to
+       fill the hero's height with no distortion, and — unlike before — nothing
+       crops its sides off. The same scale and the same right-anchored alignment
+       as before mean the near-the-edge content (what was already visible) is
+       pixel-identical; the image simply keeps going instead of getting cut. */
+    display:block;
+    height:100%;
+    width:auto;
+    max-width:none;
+    filter:contrast(1.05) brightness(1.1) saturate(0.8);
+    opacity:0.4;
+    animation:heroGridPulse 32s ease-in-out infinite;
+  }
+  @keyframes heroGridPulse{
+    0%,100%{opacity:0.36;}
+    50%{opacity:0.52;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hero-grid-bg img{animation:none !important;}
+  }
+  @media (max-width:1150px){
+    .hero-grid-bg{display:none;}
+  }
+  .eyebrow{color:var(--ink-3);margin-bottom:var(--space-5);}
+  h1.headline{color:var(--ink-1);max-width:960px;}
+  h1.headline .accent{color:var(--accent);}
+  .headline-by{color:var(--ink-1);}
+  .headline-sub{font-size:0.5em;}
+  .headline-cycle{
+    display:inline-block;
+    color:var(--ink-1);
+    font-size:inherit;
+    white-space:normal;
+  }
+  .headline-cycle::after{
+    content:'';
+    display:inline-block;
+    width:0.055em;
+    height:0.78em;
+    background:var(--ink-1);
+    margin-left:0.05em;
+    vertical-align:baseline;
+    transform:translateY(0.14em);
+    animation:headlineCursorBlink 1s steps(1,end) infinite;
+  }
+  @keyframes headlineCursorBlink{
+    0%,50%{opacity:1;}
+    50.01%,100%{opacity:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .headline-cycle::after{animation:none;opacity:1;}
+  }
+  .headline-cycle.is-done::after{display:none;}
+  .accent-mark{display:inline-block;width:0.28em;height:0.28em;background:var(--accent);border-radius:var(--radius-1);margin-left:0.14em;vertical-align:middle;}
+  .hero-sub{display:flex;column-gap:var(--space-9);row-gap:var(--space-5);margin-top:var(--space-7);align-items:flex-end;flex-wrap:wrap;}
+  .hero-sub p{color:var(--ink-1);}
+  .credential{
+    color:var(--ink-2);max-width:32ch;
+    border-left:var(--rule-heavy) solid var(--ink-1);
+    padding-left:var(--space-4);
+  }
+  .tagline-row{margin-top:clamp(72px,9vw,96px);}
+  .hero-desc{
+    margin-top:clamp(72px,9vw,96px);
+    transform:translateY(-33px);
+    max-width:600px;
+    font-family:var(--font-text);font-weight:400;
+    font-size:1.125rem; /* 18px */
+    line-height:1.6;
+    color:var(--ink-2);
+  }
+  .hero-greeting{
+    font-family:var(--font-serif);font-weight:500;
+    font-size:1.375rem; /* 22px */
+    color:var(--ink-2);
+    margin-bottom:clamp(15px,2.6vw,23px);
+    display:inline-block;
+  }
+  @keyframes greetingSparkle{
+    0%{ filter:brightness(1); text-shadow:none; }
+    35%{ filter:brightness(1.55); text-shadow:0 0 14px rgba(30,47,224,0.4); }
+    100%{ filter:brightness(1); text-shadow:none; }
+  }
+  .hero-greeting.sparkle{
+    animation:greetingSparkle 750ms ease-out;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hero-greeting.sparkle{animation:none;}
+  }
+  /* ---- Custom cursor ---- */
+  .custom-cursor{
+    position:fixed;top:0;left:0;
+    width:14px;height:14px;
+    border-radius:50%;
+    background:var(--accent);
+    pointer-events:none;
+    z-index:9999;
+    transform:translate(-50%,-50%);
+    opacity:0;
+    transition:background-color 0.15s ease, opacity 0.15s ease, transform 0.06s ease-out;
+    will-change:transform;
+  }
+  .custom-cursor.on-blue{
+    background:#fff;
+  }
+  html.custom-cursor-active, html.custom-cursor-active *{
+    cursor:none !important;
+  }
+  @media (hover:none), (pointer:coarse){
+    .custom-cursor{display:none !important;}
+    html.custom-cursor-active, html.custom-cursor-active *{
+      cursor:auto !important;
+    }
+  }
+
+  /* ---- Proof / visuals ---- */
+  .proof{
+    padding-top:calc(var(--section-y) + var(--space-4) + var(--space-8) + 14px - 70px);
+    padding-bottom:var(--space-8);
+  }
+  .proof-label{
+    font-family:var(--font-serif);font-weight:500;
+    font-size:clamp(1.375rem,1.95vw,1.625rem);
+    color:var(--ink-2);
+    margin-bottom:var(--space-8);
+  }
+  .work-list{display:flex;flex-direction:column;}
+  .work-row{
+    display:grid;grid-template-columns:minmax(190px,1fr) 3fr;gap:var(--space-6);
+    align-items:start;
+    padding:var(--space-9) 0;
+    border-bottom:var(--hairline) solid var(--rule-1);
+  }
+  .work-row:first-child{padding-top:0;scroll-margin-top:var(--nav-h,0px);}
+  .work-row:last-child{border-bottom:none;padding-bottom:0;}
+  .work-info{display:flex;flex-direction:column;justify-content:flex-start;gap:var(--space-3);min-width:0;}
+  .work-title{
+    color:var(--ink-1);text-transform:none;
+    font-size:clamp(1.25rem,1.6vw,1.5rem);
+  }
+  .work-desc{color:var(--ink-2);font-size:1rem;line-height:1.5;}
+  .work-meta-table{display:flex;flex-direction:column;}
+  .meta-row{
+    padding:var(--space-2) 0;
+    border-bottom:var(--hairline) solid var(--rule-1);
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .work-meta-table .meta-row:last-child{border-bottom:none;padding-bottom:0;}
+  .meta-label{
+    font-family:var(--font-mono);font-size:0.625rem;letter-spacing:0.04em;
+    text-transform:uppercase;color:var(--ink-3);
+  }
+  .meta-value{color:var(--ink-2);font-size:0.875rem;line-height:1.4;}
+  .meta-value a{color:var(--accent);text-decoration:none;}
+  .meta-value a:hover{text-decoration:underline;}
+  .meta-value .sep{color:var(--ink-4);margin:0 var(--space-1);}
+  .press-links{display:flex;flex-wrap:wrap;column-gap:var(--space-3);row-gap:2px;}
+  .press-links a{white-space:nowrap;}
+  .press-links .arrow{color:var(--ink-4);font-size:0.7em;}
+  .work-media{min-width:0;}
+  .work-viewport{position:relative;}
+  .work-track{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    outline:none;-webkit-tap-highlight-color:transparent;
+  }
+  .work-track::-webkit-scrollbar{display:none;}
+  .work-media-item{
+    flex:0 0 100%;scroll-snap-align:start;
+    background:var(--paper-raised);
+    border-radius:var(--radius-2);
+    overflow:hidden;
+    height:var(--media-h, 460px);
+    display:flex;align-items:center;justify-content:center;
+    min-width:0;
+  }
+  .work-media-item img{width:100%;height:100%;object-fit:cover;display:block;}
+  .work-tap{
+    position:absolute;top:0;bottom:0;width:40%;z-index:2;
+    background:none;border:none;padding:0;cursor:pointer;
+    display:flex;align-items:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .work-tap.tap-prev{left:0;justify-content:flex-start;}
+  .work-tap.tap-next{right:0;justify-content:flex-end;}
+  .work-tap-icon{
+    opacity:0;transition:opacity var(--dur-1) var(--ease-out);
+    color:#fff;font-size:1.5rem;line-height:1;
+    padding:0 var(--space-4);
+    text-shadow:0 1px 6px rgba(0,0,0,0.45);
+  }
+  .work-tap:hover .work-tap-icon{opacity:0.85;}
+  .work-tap.at-edge{cursor:default;}
+  .work-tap.at-edge:hover .work-tap-icon{opacity:0;}
+  @media (hover:none){.work-tap-icon{display:none;}}
+  .work-nav{display:flex;align-items:center;justify-content:center;margin-top:var(--space-3);}
+  .work-dots{display:flex;align-items:center;gap:7px;}
+  .work-dot{
+    width:5px;height:5px;border-radius:50%;background:var(--ink-4);
+    opacity:0.45;border:none;padding:0;cursor:pointer;
+    transition:opacity var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out);
+  }
+  .work-dot.active{opacity:1;background:var(--ink-2);transform:scale(1.3);}
+  @media (max-width:820px){
+    .work-row{grid-template-columns:1fr;gap:var(--space-5);}
+    .work-media-item{height:min(280px,var(--media-h,280px));}
+  }
+  .work-row-pair{
+    display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);
+    align-items:start;
+    padding:0 0 var(--space-9);
+    border-bottom:var(--hairline) solid var(--rule-1);
+  }
+  .work-row-pair:last-child{border-bottom:none;padding-bottom:0;}
+  .work-half{display:flex;flex-direction:column;gap:var(--space-5);min-width:0;}
+  .work-meta-compact{display:flex;flex-direction:column;gap:4px;}
+  .meta-line{color:var(--ink-2);font-size:0.875rem;line-height:1.5;}
+  @media (max-width:820px){
+    .work-row-pair{grid-template-columns:1fr;gap:var(--space-8);}
+  }
+  .work-section-divider{
+    padding:var(--space-5) 0 var(--space-5);
+  }
+  .work-section-head{
+    display:flex;align-items:center;gap:var(--space-4);
+  }
+  .work-section-title{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.15;letter-spacing:-0.02em;
+    color:var(--ink-1);
+    white-space:nowrap;
+  }
+  .work-section-rule{
+    flex:1 1 auto;height:1px;background:var(--rule-1);min-width:24px;
+  }
+  .work-section-sub{
+    margin-top:var(--space-2);
+    font-family:var(--font-text);font-weight:400;
+    font-size:1rem;line-height:1.5;
+    color:var(--ink-2);
+  }
+  .press-tag{
+    display:inline-flex;align-items:center;gap:var(--space-2);
+    color:var(--ink-2);
+  }
+  .press-tag .mark{
+    width:6px;height:6px;background:var(--accent);border-radius:var(--radius-1);flex:0 0 auto;
+  }
+  .press-tag b{color:var(--ink-1);font-weight:600;}
+
+  /* ---- Trusted by / logos: centered career-context closing moment ---- */
+  .trusted{
+    padding-top:var(--space-7);padding-bottom:var(--space-9);
+    border-top:var(--hairline) solid var(--rule-1);
+    border-bottom:var(--rule-heavy) solid var(--rule-strong);
+  }
+  .trusted-intro{max-width:720px;margin:0 auto;text-align:center;}
+  .trusted-headline{
+    font-family:var(--font-display);font-weight:600;
+    font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.28;letter-spacing:-0.01em;
+    color:var(--ink-1);
+  }
+  .trusted-sub{
+    font-family:var(--font-text);font-weight:400;
+    font-size:1rem;line-height:1.6;
+    color:var(--ink-3);
+    margin-top:var(--space-4);
+  }
+  .logo-grid{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+    column-gap:var(--space-2);row-gap:var(--space-1);
+    margin-top:calc(var(--space-8) - 14px);
+  }
+  .logo-tile{
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    padding:14px 20px;
+  }
+  .logo-tile img{
+    position:relative;
+    display:block;object-fit:contain;
+    filter:grayscale(1);opacity:0.92;
+    transition:opacity var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out), filter var(--dur-2) var(--ease-out);
+  }
+  .logo-tile:hover img{
+    opacity:1;
+    transform:translateY(-3px);
+  }
+
+  /* ---- CTA / footer (inverse) ---- */
+  .cta-block{padding:var(--space-11) 0 var(--space-9);}
+  .cta-block h2{color:var(--ink-1);max-width:22ch;}
+  .cta-actions{margin-top:var(--space-6);display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;}
+  .cta-email{color:var(--ink-3);}
+  footer.bottom{
+    margin-top:var(--space-9);padding-top:var(--space-5);
+    border-top:var(--hairline) solid var(--rule-1);
+    display:flex;justify-content:space-between;align-items:center;
+    color:var(--ink-3);flex-wrap:wrap;gap:var(--space-3);
+  }
+
+  @media (max-width:640px){
+    .hero-sub{gap:var(--space-6);}
+    .credential{border-left:none;border-top:var(--rule-heavy) solid var(--ink-1);padding-left:0;padding-top:var(--space-3);}
+  }
+</style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap navrow">
+      <div class="logo">Beatriz Vizcaino</div>
+      <a class="btn" href="mailto:beatryev@gmail.com?subject=Let's%20talk">Say Hi</a>
+    </div>
+  </header>
+
+  <section class="hero" data-theme="inverse">
+    <div class="hero-grid-bg" aria-hidden="true"><img src="images/img-01-1e890978c222.jpg" alt=""></div></div>
+    <div class="wrap">
+      <p class="hero-greeting">Hi, I&rsquo;m Beatriz.</p>
+      <h1 class="headline t-hero">I <span class="accent headline-cycle" id="heroCycleText">design</span> how people experience and interact with technology.</h1>
+      <p class="hero-desc">Working across research, product definition, interaction design and prototyping.</p>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <div class="work-list" id="track"></div>
+    </div>
+  </section>
+
+  <section class="trusted">
+    <div class="wrap">
+      <div class="trusted-intro">
+        <h2 class="trusted-headline">16 years designing products and experiences across industries.</h2>
+        <p class="trusted-sub">From healthcare and commerce to emerging technology, I&rsquo;ve spent my career understanding people, untangling complex problems, and figuring out what to build next.</p>
+      </div>
+      <div class="logo-grid" id="logoGrid"></div>
+    </div>
+  </section>
+
+  <section class="cta-block" data-theme="inverse">
+    <div class="wrap">
+      <h2 class="t-display-1">Have a project, opportunity,<br>or just want to connect?</h2>
+      <div class="cta-actions">
+        <a class="btn" href="mailto:beatryev@gmail.com?subject=Let's%20talk">Say Hi →</a>
+        <span class="cta-email t-small">or email beatryev@gmail.com</span>
+      </div>
+      <footer class="bottom t-small">
+        <span>Beatriz Vizcaino — Product Strategy &amp; Design</span>
+        <span>© 2026</span>
+      </footer>
+    </div>
+  </section>
+
+<script>
+  const items = [
+  {
+    "label": "Youth Supervision on Meta Quest",
+    "desc": "I led the design of Meta Quest's youth experience as the platform expanded to support protected under-13 and teen accounts. I helped define what that experience should be across an ecosystem originally designed for adults, translating regulatory, safety and user needs into accounts, parental supervision, privacy, permissions and social features.",
+    "type": "desktop",
+    "vr": true,
+    "meta": {
+      "years": "2022\u20132026"
+    },
+    "links": [
+      {
+        "source": "Meta",
+        "title": "Introducing VR Parental Supervision Tools on Quest",
+        "url": "https://about.fb.com/news/2022/03/vr-parental-supervision-tools-on-quest/?utm_source=chatgpt.com"
+      },
+      {
+        "source": "Meta",
+        "title": "Expanding Supervision to Horizon Worlds",
+        "url": "https://about.fb.com/news/2023/04/horizon-worlds-teen-expansion-us-canada/?utm_source=chatgpt.com"
+      },
+      {
+        "source": "TechCrunch",
+        "title": "Meta Adds Parental Controls to Quest",
+        "url": "https://techcrunch.com/2022/03/16/meta-quest-parental-controls-virtual-reality/?utm_source=chatgpt.com"
+      }
+    ],
+    "featured": "TechCrunch",
+    "images": [
+      {
+        "src": "images/img-02-5a4833019298.jpg",
+        "caption": "Checking in on a session before a teen puts on the headset"
+      },
+      {
+        "src": "images/img-03-28b63de6d4ba.png",
+        "caption": "Requesting a child's access to a Horizon Worlds experience"
+      },
+      {
+        "src": "images/img-04-c317b302c918.png",
+        "caption": "Managing a child's account and time spent in VR"
+      }
+    ],
+    "featuredLogo": "images/img-05-b13dd1ecf7d1.png",
+    "platforms": [
+      "VR",
+      "Mobile"
+    ],
+    "focus": "Product Definition \u00b7 Systems Thinking \u00b7 Product Design \u00b7 Research"
+  },
+  {
+    "label": "Welcome Screen on Meta Quest",
+    "desc": "I redesigned the front door to Meta Quest for millions of users, setting the product direction for profile switching, account discovery, and shared-device experiences \u2014 and working across teams to turn fragmented entry points into a coherent system that could scale across the platform.",
+    "type": "desktop",
+    "vr": true,
+    "meta": {
+      "years": "2025"
+    },
+    "images": [
+      {
+        "src": "images/img-06-4498de49f0da.png",
+        "caption": "Putting on the headset"
+      },
+      {
+        "src": "images/img-07-8e86f88c1dfe.png",
+        "caption": "Choosing a profile on a shared headset"
+      },
+      {
+        "src": "images/img-08-a10e6eb1d8bb.png",
+        "caption": "Adding a new profile to the headset"
+      },
+      {
+        "src":"images/img-09-60d7c022161d.png",
+        "caption": "The redesigned welcome screen"
+      }
+    ],
+    "platforms": [
+      "VR"
+    ],
+    "focus": "Systems Thinking \u00b7 Product Definition \u00b7 Interaction Design \u00b7 Visual Design"
+  },
+  {
+    "label": "Meta Quest for Business",
+    "desc": "I helped define how Meta Quest could work for businesses, translating a consumer VR product into an experience organizations could deploy and manage at scale. I drove product strategy and design across device management, work accounts, onboarding and administration.",
+    "type": "desktop",
+    "vr": true,
+    "platforms": [
+      "VR",
+      "Web"
+    ],
+    "meta": {
+      "years": "2021"
+    },
+    "images": [
+      {
+        "src": "images/img-10-39ed8efcbb23.png",
+        "caption": "Starting setup on the headset"
+      },
+      {
+        "src": "images/img-11-2405b5abe579.png",
+        "caption": "Creating a work account"
+      },
+      {
+        "src": "images/img-09-60d7c022161d.png",
+        "caption": "Managing devices across the organization"
+      }
+    ],
+    "links": [
+      {
+        "source": "TechCrunch",
+        "title": "Meta Quest is getting a business platform next month",
+        "url": "https://techcrunch.com/2023/09/27/meta-quest-is-getting-a-business-platform-next-month/"
+      }
+    ],
+    "featured": "TechCrunch",
+    "featuredLogo": "images/img-05-b13dd1ecf7d1.png",
+    "uniformImages": true,
+    "focus": "Product Strategy \u00b7 Product Design \u00b7 Systems Design"
+  },
+  {
+    "label": "Redesigning the Aetna Healthcare Experience",
+    "desc": "I helped shape a new Aetna healthcare platform, using research and design to make care discovery, provider comparison and benefits easier to navigate.",
+    "focus": "UX Research \u00b7 Usability Testing \u00b7 Information Architecture \u00b7 Product Design",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "meta": {
+      "years": "2014\u20132017"
+    },
+    "images": [
+      {
+        "src": "images/img-12-9b8e5222bbed.jpg",
+        "caption": "Searching for care on a laptop"
+      },
+      {
+        "src": "images/img-13-5989ca4d18d3.jpg",
+        "caption": "Individual benefits and spending progress on mobile"
+      }
+    ]
+  },
+  {
+    "label": "Using Customer Insights to Shape E-commerce",
+    "desc": "I established a research practice at Tuft & Needle, turning customer insights into an e-commerce roadmap spanning navigation, product comparison and checkout, with experimentation built into the process.",
+    "focus": "UX Research \u00b7 Product Strategy \u00b7 Product Design \u00b7 Experimentation",
+    "platforms": [
+      "Web",
+      "Mobile"
+    ],
+    "meta": {
+      "years": "2017\u20132020"
+    },
+    "images": [
+      {
+        "src": "images/img-14-1ae802227747.jpg",
+        "caption": "Comparing mattresses on a laptop at home"
+      },
+      {
+        "src": "images/img-15-cacee4e45529.jpg",
+        "caption": "Checkout flow across contact, delivery, and payment"
+      }
+    ]
+  }
+];
+  const track = document.getElementById('track');
+  function row(item, index, cls){
+    const wrap = document.createElement('div');
+    wrap.className = cls || 'work-row';
+
+    const media = item.images.map(img =>
+      '<div class="work-media-item">'+
+        '<img src="'+img.src+'" alt="'+item.label+(img.caption ? ' — '+img.caption : '')+'">'+
+      '</div>'
+    ).join('');
+
+    const navHtml = item.images.length > 1
+      ? '<div class="work-nav">'+
+          '<div class="work-dots">'+item.images.map((_,i)=>'<button class="work-dot'+(i===0?' active':'')+'" data-i="'+i+'" aria-label="Go to image '+(i+1)+'"></button>').join('')+'</div>'+
+        '</div>'
+      : '';
+
+    const tapHtml = item.images.length > 1
+      ? '<button class="work-tap tap-prev" aria-label="Previous image"><span class="work-tap-icon">&#8249;</span></button>'+
+        '<button class="work-tap tap-next" aria-label="Next image"><span class="work-tap-icon">&#8250;</span></button>'
+      : '';
+
+    const platformsList = item.platforms || (item.vr ? ['VR'] : []);
+
+    const dateLine = item.meta.years;
+
+    const COMPACT_META = {
+      'Redesigning the Aetna Healthcare Experience': [
+        '2014–2017 · Web + Mobile',
+        'UX Research · Information Architecture · Product Design'
+      ],
+      'Using Customer Insights to Shape E-commerce': [
+        '2017–2020 · Web + Mobile',
+        'UX Research · Product Strategy · Product Design · Experimentation'
+      ]
+    };
+    const MEDIA_FIRST = ['Using Customer Insights to Shape E-commerce', 'Redesigning the Aetna Healthcare Experience'];
+    let metaHtml;
+    if (COMPACT_META[item.label]) {
+      metaHtml = '<div class="work-meta-compact">'+
+        COMPACT_META[item.label].map(line => '<div class="meta-line">'+line+'</div>').join('')+
+      '</div>';
+    } else {
+      const rowsHtml = [];
+      rowsHtml.push('<div class="meta-row"><div class="meta-label">Years</div><div class="meta-value">'+dateLine+'</div></div>');
+      if (platformsList.length) {
+        rowsHtml.push('<div class="meta-row"><div class="meta-label">Platforms</div><div class="meta-value">'+platformsList.join(' · ')+'</div></div>');
+      }
+      if (item.focus) {
+        rowsHtml.push('<div class="meta-row"><div class="meta-label">Focus</div><div class="meta-value">'+item.focus+'</div></div>');
+      }
+      if (item.links && item.links.length) {
+        const linkHtml = item.links.map(l => '<a href="'+l.url+'" target="_blank" rel="noopener">'+l.source+' <span class="arrow">&#8599;</span></a>').join('');
+        rowsHtml.push('<div class="meta-row"><div class="meta-label">Media</div><div class="meta-value press-links">'+linkHtml+'</div></div>');
+      }
+      metaHtml = '<div class="work-meta-table">'+rowsHtml.join('')+'</div>';
+    }
+    const infoHtml =
+      '<div class="work-info">'+
+        '<div class="work-title t-title">'+item.label+'</div>'+
+        '<p class="work-desc t-small">'+item.desc+'</p>'+
+        metaHtml+
+      '</div>';
+    const mediaBlockHtml =
+      '<div class="work-media">'+
+        '<div class="work-viewport">'+
+          '<div class="work-track">'+media+'</div>'+
+          tapHtml+
+        '</div>'+
+        navHtml+
+      '</div>';
+    wrap.innerHTML = MEDIA_FIRST.includes(item.label)
+      ? mediaBlockHtml + infoHtml
+      : infoHtml + mediaBlockHtml;
+
+    const mediaEl = wrap.querySelector('.work-media');
+    const trackEl = wrap.querySelector('.work-track');
+    const mediaImgs = Array.from(trackEl.querySelectorAll('img'));
+    const slides = Array.from(trackEl.querySelectorAll('.work-media-item'));
+    const dots = Array.from(wrap.querySelectorAll('.work-dot'));
+
+    const fitMediaHeight = () => {
+      if (!mediaImgs.length) return;
+      const mediaWidth = trackEl.clientWidth;
+      if (!mediaWidth) return;
+      let maxH = 0;
+      mediaImgs.forEach(img => {
+        if (img.naturalWidth && img.naturalHeight) {
+          const h = mediaWidth * (img.naturalHeight / img.naturalWidth);
+          if (h > maxH) maxH = h;
+        }
+      });
+      if (maxH > 0) {
+        const clamped = Math.max(220, Math.min(560, Math.round(maxH)));
+        mediaEl.style.setProperty('--media-h', clamped + 'px');
+      }
+    };
+    mediaImgs.forEach(img => {
+      if (!(img.complete && img.naturalWidth)) img.addEventListener('load', () => { fitMediaHeight(); }, {once:true});
+    });
+    fitMediaHeight();
+
+    let current = 0;
+    const resnap = () => {
+      if (slides.length > 1) trackEl.scrollTo({left: current * trackEl.clientWidth});
+    };
+    if (slides.length > 1) {
+      const goTo = (i) => {
+        current = Math.max(0, Math.min(slides.length - 1, i));
+        trackEl.scrollTo({left: current * trackEl.clientWidth, behavior:'smooth'});
+      };
+      const tapPrev = wrap.querySelector('.tap-prev');
+      const tapNext = wrap.querySelector('.tap-next');
+      const updateActive = () => {
+        const w = trackEl.clientWidth || 1;
+        const idx = Math.round(trackEl.scrollLeft / w);
+        current = Math.max(0, Math.min(slides.length - 1, idx));
+        dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+        if (tapPrev) tapPrev.classList.toggle('at-edge', current === 0);
+        if (tapNext) tapNext.classList.toggle('at-edge', current === slides.length - 1);
+      };
+      dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.i,10))));
+      if (tapPrev) tapPrev.addEventListener('click', () => goTo(current - 1));
+      if (tapNext) tapNext.addEventListener('click', () => goTo(current + 1));
+      let scrollTimer;
+      trackEl.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(updateActive, 80);
+      });
+      updateActive();
+    }
+
+    wrap._fitMedia = () => { fitMediaHeight(); resnap(); };
+
+    return wrap;
+  }
+  function equalizeStatsStart(wrap){
+    const halves = wrap.querySelectorAll('.work-half');
+    if (halves.length !== 2) return;
+    const descs = Array.from(halves).map(h => h.querySelector('.work-desc'));
+    descs.forEach(d => { if (d) d.style.marginBottom = ''; });
+    const metaTops = Array.from(halves).map((h, i) => {
+      const meta = h.querySelector('.work-meta-table, .work-meta-compact');
+      const info = h.querySelector('.work-info');
+      if (!meta || !info) return 0;
+      return meta.getBoundingClientRect().top - info.getBoundingClientRect().top;
+    });
+    const maxTop = Math.max.apply(null, metaTops);
+    halves.forEach((h, i) => {
+      const diff = maxTop - metaTops[i];
+      if (diff > 0.5 && descs[i]) {
+        descs[i].style.marginBottom = diff + 'px';
+      }
+    });
+  }
+  function pairRow(itemA, itemB){
+    const wrap = document.createElement('div');
+    wrap.className = 'work-row-pair';
+    const a = row(itemA, 0, 'work-half');
+    const b = row(itemB, 0, 'work-half');
+    wrap.appendChild(a);
+    wrap.appendChild(b);
+    wrap._fitMedia = () => {
+      a._fitMedia && a._fitMedia();
+      b._fitMedia && b._fitMedia();
+      equalizeStatsStart(wrap);
+    };
+    requestAnimationFrame(() => equalizeStatsStart(wrap));
+    return wrap;
+  }
+  function sectionDivider(title, sub){
+    const d = document.createElement('div');
+    d.className = 'work-section-divider';
+    d.innerHTML =
+      '<div class="work-section-head">'+
+        '<h3 class="work-section-title">'+title+'</h3>'+
+        '<span class="work-section-rule" aria-hidden="true"></span>'+
+      '</div>'+
+      (sub ? '<p class="work-section-sub">'+sub+'</p>' : '');
+    return d;
+  }
+  const PAIRED_LABELS = ['Redesigning the Aetna Healthcare Experience', 'Using Customer Insights to Shape E-commerce'];
+  const rows = [];
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    if (PAIRED_LABELS.includes(it.label) && i + 1 < items.length && PAIRED_LABELS.includes(items[i+1].label)) {
+      const prevRow = rows[rows.length - 1];
+      if (prevRow && prevRow.classList.contains('work-row')) {
+        prevRow.style.borderBottom = 'none';
+        prevRow.style.paddingBottom = '0';
+      }
+      rows.push(sectionDivider('Earlier Work', 'Selected projects across healthcare and e-commerce.'));
+      rows.push(pairRow(it, items[i+1]));
+      i++;
+    } else {
+      rows.push(row(it, i));
+    }
+  }
+  rows.forEach(r => track.appendChild(r));
+  let mediaResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(mediaResizeTimer);
+    mediaResizeTimer = setTimeout(() => rows.forEach(r => r._fitMedia && r._fitMedia()), 150);
+  });
+
+  // Real client/brand logos
+  const logos = {
+  "Meta": "images/img-16-7edc8f9a8c4d.png",
+  "Serta Simmons Bedding": "images/img-17-77adf4ad2ef8.png",
+  "Tuft & Needle": "images/img-18-aa1f6a7aa576.png",
+  "Aetna": "images/img-19-b6c10713b9be.png",
+  "American Express": "images/img-20-e0d38c2f0cd1.png",
+  "NFL": "images/img-21-05a6dc3cb270.png",
+  "Bloomberg": "images/img-22-a1985e8d1265.png"
+};
+  const logoGrid = document.getElementById('logoGrid');
+  const logoSizes = {"Meta": [93, 19], "Serta Simmons Bedding": [77, 48], "Tuft & Needle": [122, 14], "Aetna": [90, 23], "American Express": [54, 53], "NFL": [40, 53], "Bloomberg": [122, 34]};
+  Object.keys(logos).forEach(name => {
+    const tile = document.createElement('div');
+    tile.className = 'logo-tile';
+    const img = document.createElement('img');
+    img.src = logos[name];
+    img.alt = name;
+    const sz = logoSizes[name];
+    if (sz) { img.style.width = sz[0] + 'px'; img.style.height = sz[1] + 'px'; }
+    tile.appendChild(img);
+    logoGrid.appendChild(tile);
+  });
+
+  // ---- Hero: headline verb types in and deletes like a typewriter ----
+  (function(){
+    const phraseEl = document.getElementById('heroCycleText');
+    if (!phraseEl) return;
+    const heroSection = document.querySelector('.hero');
+    const phrases = [
+      "design",
+      "define",
+      "shape",
+      "rethink"
+    ];
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const TYPE_MS = 220;
+    const DELETE_MS = 110;
+    const HOLD_MS = 2200;
+    const GAP_MS = 400;
+    let i = 0;
+    let timer = null;
+
+    function clearTimer(){ clearTimeout(timer); }
+
+    const greetingEl = document.querySelector('.hero-greeting');
+    function finish(){
+      phraseEl.classList.add('is-done');
+      if (greetingEl) {
+        greetingEl.classList.remove('sparkle');
+        // force reflow so the animation can replay on repeat triggers
+        void greetingEl.offsetWidth;
+        greetingEl.classList.add('sparkle');
+      }
+    }
+
+    function typePhrase(text, cb){
+      let pos = phraseEl.textContent.length;
+      (function step(){
+        pos++;
+        phraseEl.textContent = text.slice(0, pos);
+        if (pos < text.length) {
+          timer = setTimeout(step, TYPE_MS);
+        } else if (cb) {
+          cb();
+        }
+      })();
+    }
+
+    function deletePhrase(cb){
+      (function step(){
+        const cur = phraseEl.textContent;
+        if (cur.length > 0) {
+          phraseEl.textContent = cur.slice(0, -1);
+          timer = setTimeout(step, DELETE_MS);
+        } else {
+          cb();
+        }
+      })();
+    }
+
+    function cycle(){
+      timer = setTimeout(() => {
+        deletePhrase(() => {
+          i = (i + 1) % phrases.length;
+          timer = setTimeout(() => {
+            // Once the cycle wraps back around to the first word ("design"),
+            // type it back in and stop — one full loop through the list, then rest.
+            typePhrase(phrases[i], i === 0 ? finish : cycle);
+          }, GAP_MS);
+        });
+      }, HOLD_MS);
+    }
+
+    // Play the full cycle from the top every time the hero enters view —
+    // on first load, and again whenever it's scrolled out and back in.
+    function startCycle(){
+      clearTimer();
+      i = 0;
+      phraseEl.classList.remove('is-done');
+      phraseEl.textContent = phrases[0];
+      cycle();
+    }
+
+    if ('IntersectionObserver' in window && heroSection) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startCycle();
+          } else {
+            clearTimer();
+          }
+        });
+      }, {threshold: 0.4});
+      io.observe(heroSection);
+    } else {
+      startCycle();
+    }
+  })();
+
+  // ---- Custom dot cursor: blue by default, flips white over blue surfaces ----
+  (function(){
+    const canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!canHover) return;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+    document.documentElement.classList.add('custom-cursor-active');
+
+    const BLUE_SELECTOR = '.btn, .accent, .accent-mark, .headline-cycle, .meta-value a, .press-links a, .work-dot.active';
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.opacity = '1';
+      cursor.style.transform = 'translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const onBlue = el && el.closest && el.closest(BLUE_SELECTOR);
+      cursor.classList.toggle('on-blue', !!onBlue);
+    }, {passive:true});
+
+    document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+  })();
+
+  // ---- Nav: sit over the dark hero at rest, switch to white as soon as scrolling starts ----
+  (function(){
+    const heroEl = document.querySelector('.hero');
+    const navEl = document.querySelector('header.top');
+    if (!heroEl || !navEl) return;
+
+    function setNavHeightVar(){
+      document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
+    }
+
+    let ticking = false;
+    function update(){
+      navEl.classList.toggle('on-dark', window.scrollY <= 2);
+      ticking = false;
+    }
+    function onScroll(){
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+    function onResize(){
+      setNavHeightVar();
+      onScroll();
+    }
+
+    setNavHeightVar();
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onResize);
+    update();
+  })();
+
+  // ---- Gentle settle: if the scroll comes to rest in the gap between the
+  // hero and the first project, ease forward so the project lands flush
+  // under the nav instead of stopping midway in the empty space. Never pulls
+  // backward toward the hero, and only acts within that one gap. ----
+  (function(){
+    const heroEl = document.querySelector('.hero');
+    const firstRow = document.querySelector('.work-row');
+    if (!heroEl || !firstRow) return;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let settleTimer = null;
+    let assisting = false;
+
+    function targetY(){
+      const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0;
+      const rect = firstRow.getBoundingClientRect();
+      return rect.top + window.scrollY - navH;
+    }
+
+    function maybeSettle(){
+      if (assisting) return;
+      const heroBottom = heroEl.getBoundingClientRect().bottom + window.scrollY;
+      const y = targetY();
+      const current = window.scrollY;
+      if (current > heroBottom - 4 && current < y - 4) {
+        assisting = true;
+        window.scrollTo({top: y, behavior: reduceMotion ? 'auto' : 'smooth'});
+        setTimeout(() => { assisting = false; }, reduceMotion ? 50 : 700);
+      }
+    }
+
+    function onGapScroll(){
+      if (assisting) return;
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(maybeSettle, 140);
+    }
+
+    window.addEventListener('scroll', onGapScroll, {passive:true});
+  })();
+
+</script>
+
+</body>
+</html>
