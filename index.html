@@ -98,12 +98,10 @@
   header.top{
     border-bottom:var(--hairline) solid var(--rule-1);
     position:sticky;top:0;background:var(--paper);z-index:50;
-    transition:background var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
   }
-  header.top.on-dark{background:transparent;border-bottom-color:transparent;}
-  .navrow{display:flex;align-items:center;justify-content:space-between;padding-top:var(--space-5);padding-bottom:var(--space-5);}
-  .logo{font-family:var(--font-display);font-weight:800;font-size:16px;letter-spacing:-0.01em;transition:color var(--dur-2) var(--ease-out);}
-  header.top.on-dark .logo{color:#fff;}
+  .navrow{display:flex;align-items:center;justify-content:space-between;column-gap:var(--space-6);padding-top:var(--space-5);padding-bottom:var(--space-5);}
+  .logo{font-family:var(--font-display);font-weight:800;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;transition:color var(--dur-2) var(--ease-out);}
+  .logo:hover{color:var(--accent);}
   .btn{
     background:var(--accent);color:var(--accent-ink);
     padding:var(--space-3) var(--space-5);
@@ -133,92 +131,22 @@
     color:transparent;
   }
 
-  /* ---- Hero ---- */
+  /* ---- Hero ----
+     Simplified per redesign: no background art, no motion — typography, scale
+     and whitespace carry the section. Structural reference: the quiet, static,
+     left-aligned intro at https://garri.design/#work (layout only; type, color
+     and identity stay this site's own). */
   .hero{
     position:relative;
-    overflow:hidden;
-    margin-top:calc(-1 * var(--nav-h,0px));
-    padding:calc(var(--space-10) + var(--nav-h,0px) - 40px) 0 calc(var(--section-y) + var(--space-5) - 20px - 40px);
-    border-bottom:var(--rule-heavy) solid var(--rule-strong);
+    padding:var(--space-9) 0 var(--space-9);
+    border-bottom:var(--hairline) solid var(--rule-1);
   }
   .hero > .wrap{position:relative;z-index:1;}
-
-  /* Faint process-artifact grid tucked along the hero's right side, well clear of
-     the headline — a glimpse of the messy inputs, not a gallery. It dissolves into
-     the plain black hero on its own left edge (no card/box shape behind the type).
-     Decorative only (aria-hidden). The mask is percentage-based against this
-     element's own box, so it scales with the hero rather than fixed pixel edges. */
-  .hero-grid-bg{
-    position:absolute;
-    top:0;
-    right:0;
-    bottom:0;
-    /* No explicit width: right is set and left is auto, so this shrink-wraps to
-       its child's own rendered size (see .hero-grid-bg img below) — the container's
-       physical edge and the image's physical edge are the same edge, by construction.
-       That edge is real, uncropped image content (not empty space), and the mask
-       below is tuned so that content has already faded to essentially nothing by
-       the time it gets there — so there is nothing left to reveal a boundary. */
-    z-index:0;
-    overflow:hidden;
-    pointer-events:none;
-    -webkit-mask-image:linear-gradient(295deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.72) 5.916%, rgba(0,0,0,0.58) 12.571%, rgba(0,0,0,0.44) 19.226%, rgba(0,0,0,0.32) 26.621%, rgba(0,0,0,0.22) 34.016%, rgba(0,0,0,0.14) 41.411%, rgba(0,0,0,0.09) 48.806%, rgba(0,0,0,0.05) 56.2%, rgba(0,0,0,0.025) 62.856%, rgba(0,0,0,0.01) 68.032%, rgba(0,0,0,0.003) 71.73%, transparent 73.948%, transparent 100%);
-    mask-image:linear-gradient(295deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.72) 5.916%, rgba(0,0,0,0.58) 12.571%, rgba(0,0,0,0.44) 19.226%, rgba(0,0,0,0.32) 26.621%, rgba(0,0,0,0.22) 34.016%, rgba(0,0,0,0.14) 41.411%, rgba(0,0,0,0.09) 48.806%, rgba(0,0,0,0.05) 56.2%, rgba(0,0,0,0.025) 62.856%, rgba(0,0,0,0.01) 68.032%, rgba(0,0,0,0.003) 71.73%, transparent 73.948%, transparent 100%);
-  }
-  .hero-grid-bg img{
-    /* height fixed, width auto: the browser scales the image proportionally to
-       fill the hero's height with no distortion, and — unlike before — nothing
-       crops its sides off. The same scale and the same right-anchored alignment
-       as before mean the near-the-edge content (what was already visible) is
-       pixel-identical; the image simply keeps going instead of getting cut. */
-    display:block;
-    height:100%;
-    width:auto;
-    max-width:none;
-    filter:contrast(1.05) brightness(1.1) saturate(0.8);
-    opacity:0.4;
-    animation:heroGridPulse 32s ease-in-out infinite;
-  }
-  @keyframes heroGridPulse{
-    0%,100%{opacity:0.36;}
-    50%{opacity:0.52;}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .hero-grid-bg img{animation:none !important;}
-  }
-  @media (max-width:1150px){
-    .hero-grid-bg{display:none;}
-  }
   .eyebrow{color:var(--ink-3);margin-bottom:var(--space-5);}
-  h1.headline{color:var(--ink-1);max-width:960px;}
+  h1.headline{color:var(--ink-1);max-width:1376px;}
   h1.headline .accent{color:var(--accent);}
   .headline-by{color:var(--ink-1);}
   .headline-sub{font-size:0.5em;}
-  .headline-cycle{
-    display:inline-block;
-    color:var(--ink-1);
-    font-size:inherit;
-    white-space:normal;
-  }
-  .headline-cycle::after{
-    content:'';
-    display:inline-block;
-    width:0.055em;
-    height:0.78em;
-    background:var(--ink-1);
-    margin-left:0.05em;
-    vertical-align:baseline;
-    transform:translateY(0.14em);
-    animation:headlineCursorBlink 1s steps(1,end) infinite;
-  }
-  @keyframes headlineCursorBlink{
-    0%,50%{opacity:1;}
-    50.01%,100%{opacity:0;}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .headline-cycle::after{animation:none;opacity:1;}
-  }
-  .headline-cycle.is-done::after{display:none;}
   .accent-mark{display:inline-block;width:0.28em;height:0.28em;background:var(--accent);border-radius:var(--radius-1);margin-left:0.14em;vertical-align:middle;}
   .hero-sub{display:flex;column-gap:var(--space-9);row-gap:var(--space-5);margin-top:var(--space-7);align-items:flex-end;flex-wrap:wrap;}
   .hero-sub p{color:var(--ink-1);}
@@ -229,9 +157,8 @@
   }
   .tagline-row{margin-top:clamp(72px,9vw,96px);}
   .hero-desc{
-    margin-top:clamp(72px,9vw,96px);
-    transform:translateY(-33px);
-    max-width:600px;
+    margin-top:var(--space-6);
+    max-width:760px;
     font-family:var(--font-text);font-weight:400;
     font-size:1.125rem; /* 18px */
     line-height:1.6;
@@ -240,51 +167,16 @@
   .hero-greeting{
     font-family:var(--font-serif);font-weight:500;
     font-size:1.375rem; /* 22px */
-    color:var(--ink-2);
+    color:var(--accent);
     margin-bottom:clamp(15px,2.6vw,23px);
     display:inline-block;
-  }
-  @keyframes greetingSparkle{
-    0%{ filter:brightness(1); text-shadow:none; }
-    35%{ filter:brightness(1.55); text-shadow:0 0 14px rgba(30,47,224,0.4); }
-    100%{ filter:brightness(1); text-shadow:none; }
-  }
-  .hero-greeting.sparkle{
-    animation:greetingSparkle 750ms ease-out;
-  }
-  @media (prefers-reduced-motion:reduce){
-    .hero-greeting.sparkle{animation:none;}
-  }
-  /* ---- Custom cursor ---- */
-  .custom-cursor{
-    position:fixed;top:0;left:0;
-    width:14px;height:14px;
-    border-radius:50%;
-    background:var(--accent);
-    pointer-events:none;
-    z-index:9999;
-    transform:translate(-50%,-50%);
-    opacity:0;
-    transition:background-color 0.15s ease, opacity 0.15s ease, transform 0.06s ease-out;
-    will-change:transform;
-  }
-  .custom-cursor.on-blue{
-    background:#fff;
-  }
-  html.custom-cursor-active, html.custom-cursor-active *{
-    cursor:none !important;
-  }
-  @media (hover:none), (pointer:coarse){
-    .custom-cursor{display:none !important;}
-    html.custom-cursor-active, html.custom-cursor-active *{
-      cursor:auto !important;
-    }
   }
 
   /* ---- Proof / visuals ---- */
   .proof{
     padding-top:calc(var(--section-y) + var(--space-4) + var(--space-8) + 14px - 70px);
     padding-bottom:var(--space-8);
+    scroll-margin-top:var(--nav-h,0px);
   }
   .proof-label{
     font-family:var(--font-serif);font-weight:500;
@@ -302,6 +194,14 @@
   .work-row:first-child{padding-top:0;scroll-margin-top:var(--nav-h,0px);}
   .work-row:last-child{border-bottom:none;padding-bottom:0;}
   .work-info{display:flex;flex-direction:column;justify-content:flex-start;gap:var(--space-3);min-width:0;}
+  .year-pill{
+    align-self:flex-start;
+    background:var(--accent-wash);color:var(--accent);
+    font-family:var(--font-mono);font-weight:600;font-size:0.6875rem;
+    letter-spacing:0.03em;
+    padding:5px 11px;
+    border-radius:var(--radius-pill);
+  }
   .work-title{
     color:var(--ink-1);text-transform:none;
     font-size:clamp(1.25rem,1.6vw,1.5rem);
@@ -309,9 +209,9 @@
   .work-desc{color:var(--ink-2);font-size:1rem;line-height:1.5;}
   .work-meta-table{display:flex;flex-direction:column;}
   .meta-row{
-    padding:var(--space-2) 0;
+    padding:var(--space-4) 0;
     border-bottom:var(--hairline) solid var(--rule-1);
-    display:flex;flex-direction:column;gap:2px;
+    display:flex;flex-direction:column;gap:4px;
   }
   .work-meta-table .meta-row:last-child{border-bottom:none;padding-bottom:0;}
   .meta-label{
@@ -322,9 +222,11 @@
   .meta-value a{color:var(--accent);text-decoration:none;}
   .meta-value a:hover{text-decoration:underline;}
   .meta-value .sep{color:var(--ink-4);margin:0 var(--space-1);}
+  .meta-value-lines{display:flex;flex-direction:column;gap:4px;}
   .press-links{display:flex;flex-wrap:wrap;column-gap:var(--space-3);row-gap:2px;}
   .press-links a{white-space:nowrap;}
   .press-links .arrow{color:var(--ink-4);font-size:0.7em;}
+
   .work-media{min-width:0;}
   .work-viewport{position:relative;}
   .work-track{
@@ -341,8 +243,10 @@
     height:var(--media-h, 460px);
     display:flex;align-items:center;justify-content:center;
     min-width:0;
+    box-shadow:0 0 0 3px var(--paper);
   }
   .work-media-item img{width:100%;height:100%;object-fit:cover;display:block;}
+  .work-media-item video{width:100%;height:100%;object-fit:cover;display:block;}
   .work-tap{
     position:absolute;top:0;bottom:0;width:40%;z-index:2;
     background:none;border:none;padding:0;cursor:pointer;
@@ -373,40 +277,6 @@
     .work-row{grid-template-columns:1fr;gap:var(--space-5);}
     .work-media-item{height:min(280px,var(--media-h,280px));}
   }
-  .work-row-pair{
-    display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);
-    align-items:start;
-    padding:0 0 var(--space-9);
-    border-bottom:var(--hairline) solid var(--rule-1);
-  }
-  .work-row-pair:last-child{border-bottom:none;padding-bottom:0;}
-  .work-half{display:flex;flex-direction:column;gap:var(--space-5);min-width:0;}
-  .work-meta-compact{display:flex;flex-direction:column;gap:4px;}
-  .meta-line{color:var(--ink-2);font-size:0.875rem;line-height:1.5;}
-  @media (max-width:820px){
-    .work-row-pair{grid-template-columns:1fr;gap:var(--space-8);}
-  }
-  .work-section-divider{
-    padding:var(--space-5) 0 var(--space-5);
-  }
-  .work-section-head{
-    display:flex;align-items:center;gap:var(--space-4);
-  }
-  .work-section-title{
-    font-family:var(--font-display);font-weight:700;
-    font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.15;letter-spacing:-0.02em;
-    color:var(--ink-1);
-    white-space:nowrap;
-  }
-  .work-section-rule{
-    flex:1 1 auto;height:1px;background:var(--rule-1);min-width:24px;
-  }
-  .work-section-sub{
-    margin-top:var(--space-2);
-    font-family:var(--font-text);font-weight:400;
-    font-size:1rem;line-height:1.5;
-    color:var(--ink-2);
-  }
   .press-tag{
     display:inline-flex;align-items:center;gap:var(--space-2);
     color:var(--ink-2);
@@ -416,28 +286,14 @@
   }
   .press-tag b{color:var(--ink-1);font-weight:600;}
 
-  /* ---- Trusted by / logos: centered career-context closing moment ---- */
-  .trusted{
-    padding-top:var(--space-7);padding-bottom:var(--space-9);
-    border-top:var(--hairline) solid var(--rule-1);
-    border-bottom:var(--rule-heavy) solid var(--rule-strong);
-  }
-  .trusted-intro{max-width:720px;margin:0 auto;text-align:center;}
-  .trusted-headline{
-    font-family:var(--font-display);font-weight:600;
-    font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.28;letter-spacing:-0.01em;
-    color:var(--ink-1);
-  }
-  .trusted-sub{
-    font-family:var(--font-text);font-weight:400;
-    font-size:1rem;line-height:1.6;
-    color:var(--ink-3);
-    margin-top:var(--space-4);
-  }
+  /* ---- Trusted-by logos: now shown beneath the About section ---- */
   .logo-grid{
     display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
     column-gap:var(--space-2);row-gap:var(--space-1);
-    margin-top:calc(var(--space-8) - 14px);
+    margin-top:var(--space-9);
+    padding-top:var(--space-5);
+    padding-bottom:var(--space-5);
+    border-top:var(--hairline) solid var(--rule-1);
   }
   .logo-tile{
     position:relative;
@@ -453,6 +309,96 @@
   .logo-tile:hover img{
     opacity:1;
     transform:translateY(-3px);
+  }
+
+  /* ---- About: personal statement + testimonial carousel ---- */
+  .about{
+    padding-top:var(--space-9);padding-bottom:var(--space-9);
+    border-top:var(--hairline) solid var(--rule-1);
+  }
+  .about-grid{display:grid;grid-template-columns:minmax(0,640px) 1fr;gap:var(--space-8);align-items:flex-start;}
+  .about-intro{max-width:640px;}
+  .about-lead{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(1.75rem,3vw,2.5rem);line-height:1.2;letter-spacing:-0.02em;
+    color:var(--ink-1);
+  }
+  .about-p{
+    font-family:var(--font-text);font-weight:400;
+    font-size:1.0625rem;line-height:1.6;
+    color:var(--ink-2);
+    margin-top:var(--space-5);
+  }
+  .about-p + .about-p{margin-top:var(--space-4);}
+
+  .about-quotes{
+    width:100%;max-width:480px;min-width:0;
+    justify-self:center;
+    background:var(--paper-raised);
+    border-radius:14px;
+    padding:var(--space-6);
+    box-shadow:0 1px 2px rgba(10,10,10,0.04), 0 16px 32px rgba(10,10,10,0.07);
+  }
+  .quote-viewport{position:relative;}
+  .quote-track{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    outline:none;-webkit-tap-highlight-color:transparent;
+  }
+  .quote-track::-webkit-scrollbar{display:none;}
+  .quote-slide{
+    flex:0 0 100%;scroll-snap-align:start;min-width:0;
+  }
+  .quote-placeholder{
+    position:relative;
+    font-family:var(--font-mono);font-style:italic;font-weight:400;
+    font-size:0.9375rem;line-height:1.7;
+    color:var(--ink-2);
+    min-height:130px;
+    padding-top:3rem;
+  }
+  .quote-placeholder::before{
+    content:"\201C";
+    position:absolute;
+    top:0;left:-0.15rem;
+    font-family:var(--font-serif);font-style:normal;font-weight:600;
+    font-size:4.5rem;line-height:1;
+    color:var(--accent);
+  }
+  .quote-who{
+    margin-top:var(--space-4);
+    font-family:var(--font-text);font-weight:400;
+    font-size:0.8125rem;line-height:1.4;
+    color:var(--ink-3);
+  }
+  .quote-tap{
+    position:absolute;top:0;bottom:0;width:22%;z-index:2;
+    background:none;border:none;padding:0;cursor:pointer;
+    display:flex;align-items:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .quote-tap.tap-prev{left:0;justify-content:flex-start;}
+  .quote-tap.tap-next{right:0;justify-content:flex-end;}
+  .quote-tap-icon{
+    opacity:0;transition:opacity var(--dur-1) var(--ease-out);
+    color:var(--ink-3);font-size:1.25rem;line-height:1;
+  }
+  .quote-tap:hover .quote-tap-icon{opacity:0.8;}
+  .quote-tap.at-edge{cursor:default;}
+  .quote-tap.at-edge:hover .quote-tap-icon{opacity:0;}
+  @media (hover:none){.quote-tap-icon{display:none;}}
+  .quote-nav{display:flex;align-items:center;margin-top:var(--space-4);}
+  .quote-dots{display:flex;align-items:center;gap:7px;}
+  .quote-dot{
+    width:5px;height:5px;border-radius:50%;background:var(--ink-4);
+    opacity:0.45;border:none;padding:0;cursor:pointer;
+    transition:opacity var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out);
+  }
+  .quote-dot.active{opacity:1;background:var(--ink-2);transform:scale(1.3);}
+  @media (max-width:820px){
+    .about-grid{grid-template-columns:1fr;gap:var(--space-6);}
+    .about-intro{max-width:none;}
+    .about-quotes{max-width:none;width:100%;}
   }
 
   /* ---- CTA / footer (inverse) ---- */
@@ -477,32 +423,62 @@
 
   <header class="top">
     <div class="wrap navrow">
-      <div class="logo">Beatriz Vizcaino</div>
+      <a class="logo" href="index.html">Beatriz Vizcaino</a>
       <a class="btn" href="mailto:beatryev@gmail.com?subject=Let's%20talk">Say Hi</a>
     </div>
   </header>
 
-  <section class="hero" data-theme="inverse">
-    <div class="hero-grid-bg" aria-hidden="true"><img src="images/img-01-1e890978c222.jpg" alt=""></div></div>
+  <section class="hero">
     <div class="wrap">
-      <p class="hero-greeting">Hi, I&rsquo;m Beatriz.</p>
-      <h1 class="headline t-hero">I <span class="accent headline-cycle" id="heroCycleText">design</span> how people experience and interact with technology.</h1>
-      <p class="hero-desc">Working across research, product definition, interaction design and prototyping.</p>
+      <h1 class="headline t-hero">Hi, I&rsquo;m <span class="accent">Beatriz</span>. I&rsquo;m a product designer and strategist.</h1>
+      <p class="hero-desc">Over the last 16+ years, I&rsquo;ve designed products across healthcare, commerce, social technology and VR. I work across research, strategy and design to understand customers, make sense of complex product spaces, and figure out what to build next.</p>
     </div>
   </section>
 
-  <section class="proof">
+  <section class="proof" id="work">
     <div class="wrap">
       <div class="work-list" id="track"></div>
     </div>
   </section>
 
-  <section class="trusted">
-    <div class="wrap">
-      <div class="trusted-intro">
-        <h2 class="trusted-headline">16 years designing products and experiences across industries.</h2>
-        <p class="trusted-sub">From healthcare and commerce to emerging technology, I&rsquo;ve spent my career understanding people, untangling complex problems, and figuring out what to build next.</p>
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-intro">
+        <h2 class="about-lead">16 years finding opportunity in complex problems.</h2>
+        <p class="about-p">I&rsquo;ve built my career on understanding people&mdash;what they need, how they behave, and where products fall short. But understanding the customer is only the beginning.</p>
+        <p class="about-p">My strength is connecting those insights to the bigger picture: the product, the business, the technology, and the opportunity ahead. It&rsquo;s how I&rsquo;ve worked across healthcare, commerce, social technology and VR&mdash;and how I can step into a new space, get smart quickly, and develop a strong point of view.</p>
       </div>
+
+      <div class="about-quotes">
+        <div class="quote-viewport">
+          <div class="quote-track">
+            <div class="quote-slide">
+              <blockquote class="quote-placeholder">Beatriz&rsquo;s impact on the team was felt the moment she joined the Youth work. She took on some of the most challenging and ambiguous problems&hellip; seamlessly driving these initiatives from problem identification to dogfooding.</blockquote>
+              <div class="quote-who">Product Designer, Meta</div>
+            </div>
+            <div class="quote-slide">
+              <blockquote class="quote-placeholder">You are able to successfully break down ambiguous scope into simplified ideas, create compelling proposals to tackle the problems, and influence the team&rsquo;s roadmap.</blockquote>
+              <div class="quote-who">Product Manager, Meta</div>
+            </div>
+            <div class="quote-slide">
+              <blockquote class="quote-placeholder">Her ability to tell a complex story in a simple way is unmatched, and our projects would not be where they are today without her.</blockquote>
+              <div class="quote-who">Content Designer, Meta</div>
+            </div>
+          </div>
+          <button class="quote-tap tap-prev" aria-label="Previous quote"><span class="quote-tap-icon">&#8249;</span></button>
+          <button class="quote-tap tap-next" aria-label="Next quote"><span class="quote-tap-icon">&#8250;</span></button>
+        </div>
+        <div class="quote-nav">
+          <div class="quote-dots">
+            <button class="quote-dot active" data-i="0" aria-label="Go to quote 1"></button>
+            <button class="quote-dot" data-i="1" aria-label="Go to quote 2"></button>
+            <button class="quote-dot" data-i="2" aria-label="Go to quote 3"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
       <div class="logo-grid" id="logoGrid"></div>
     </div>
   </section>
@@ -524,12 +500,12 @@
 <script>
   const items = [
   {
-    "label": "Youth Supervision on Meta Quest",
-    "desc": "I led the design of Meta Quest's youth experience as the platform expanded to support protected under-13 and teen accounts. I helped define what that experience should be across an ecosystem originally designed for adults, translating regulatory, safety and user needs into accounts, parental supervision, privacy, permissions and social features.",
+    "label": "Expanding Meta Quest to Youth and Families",
+    "desc": "With 85% of U.S. teens playing video games, expanding Meta Quest to younger users unlocked a massive new demographic—but required fundamentally rethinking an ecosystem built for adults. I led the product design and UX strategy for this transformation, pioneering the systems for youth accounts, cross-device parental controls, and immersive trust and safety guardrails.",
     "type": "desktop",
     "vr": true,
     "meta": {
-      "years": "2022\u20132026"
+      "years": "2022–2026"
     },
     "links": [
       {
@@ -551,59 +527,36 @@
     "featured": "TechCrunch",
     "images": [
       {
-        "src": "images/img-02-5a4833019298.jpg",
-        "caption": "Checking in on a session before a teen puts on the headset"
+        "type": "video",
+        "src": "images/vid-welcome-flow-3a91c2e0.mp4",
+        "poster": "images/poster-welcome-flow-3a91c2e0.jpg",
+        "caption": "Adding and verifying a new profile from inside the headset"
       },
       {
-        "src": "images/img-03-28b63de6d4ba.png",
-        "caption": "Requesting a child's access to a Horizon Worlds experience"
+        "src": "images/img-approval-request-c72fa1e9.png",
+        "caption": "Reviewing and approving a request to join a new Horizon Worlds experience"
       },
       {
-        "src": "images/img-04-c317b302c918.png",
-        "caption": "Managing a child's account and time spent in VR"
+        "type": "video",
+        "src": "images/vid-social-vr-6d4e0b1a.mp4",
+        "poster": "images/poster-social-vr-6d4e0b1a.jpg",
+        "caption": "Requesting parent approval to add a new friend"
       }
     ],
     "featuredLogo": "images/img-05-b13dd1ecf7d1.png",
     "platforms": [
       "VR",
-      "Mobile"
+      "Mobile",
+      "Web"
     ],
-    "focus": "Product Definition \u00b7 Systems Thinking \u00b7 Product Design \u00b7 Research"
+    "focus": "Product Strategy & Definition · Trust & Safety Design · Systems Thinking · Interaction Design",
+    "impact": [
+      { "value": "+29K", "label": "Projected MAU from youth expansion, alongside increased parent engagement with safety features" }
+    ]
   },
   {
-    "label": "Welcome Screen on Meta Quest",
-    "desc": "I redesigned the front door to Meta Quest for millions of users, setting the product direction for profile switching, account discovery, and shared-device experiences \u2014 and working across teams to turn fragmented entry points into a coherent system that could scale across the platform.",
-    "type": "desktop",
-    "vr": true,
-    "meta": {
-      "years": "2025"
-    },
-    "images": [
-      {
-        "src": "images/img-06-4498de49f0da.png",
-        "caption": "Putting on the headset"
-      },
-      {
-        "src": "images/img-07-8e86f88c1dfe.png",
-        "caption": "Choosing a profile on a shared headset"
-      },
-      {
-        "src": "images/img-08-a10e6eb1d8bb.png",
-        "caption": "Adding a new profile to the headset"
-      },
-      {
-        "src":"images/img-09-60d7c022161d.png",
-        "caption": "The redesigned welcome screen"
-      }
-    ],
-    "platforms": [
-      "VR"
-    ],
-    "focus": "Systems Thinking \u00b7 Product Definition \u00b7 Interaction Design \u00b7 Visual Design"
-  },
-  {
-    "label": "Meta Quest for Business",
-    "desc": "I helped define how Meta Quest could work for businesses, translating a consumer VR product into an experience organizations could deploy and manage at scale. I drove product strategy and design across device management, work accounts, onboarding and administration.",
+    "label": "Expanding Meta Quest into the Workplace",
+    "desc": "Businesses were increasingly adopting VR for training, collaboration and other workplace use cases, creating an opportunity for Meta to expand Quest beyond consumers. But a device designed for individuals wasn't built to be deployed and managed across an organization.\n\nQuest for Business was Meta's response. I led product design across the experience, helping evolve Quest from a consumer platform into one businesses could deploy and manage at scale.",
     "type": "desktop",
     "vr": true,
     "platforms": [
@@ -615,16 +568,20 @@
     },
     "images": [
       {
-        "src": "images/img-10-39ed8efcbb23.png",
-        "caption": "Starting setup on the headset"
+        "src": "images/img-qfb-setup-7c3d81a2.png",
+        "caption": "Guided setup for Meta Quest for Business on the headset"
       },
       {
-        "src": "images/img-11-2405b5abe579.png",
-        "caption": "Creating a work account"
-      },
-      {
-        "src": "images/img-09-60d7c022161d.png",
+        "src": "images/img-qfb-devices-4e19b7f0.png",
         "caption": "Managing devices across the organization"
+      },
+      {
+        "src": "images/img-qfb-people-91ad2c6e.png",
+        "caption": "Managing people and accounts in the admin directory"
+      },
+      {
+        "src": "images/img-qfb-applibrary-5f8e02c9.png",
+        "caption": "Browsing the app library from inside the headset"
       }
     ],
     "links": [
@@ -637,49 +594,52 @@
     "featured": "TechCrunch",
     "featuredLogo": "images/img-05-b13dd1ecf7d1.png",
     "uniformImages": true,
-    "focus": "Product Strategy \u00b7 Product Design \u00b7 Systems Design"
+    "focus": "Product Strategy · Product Design · Systems Design"
   },
   {
-    "label": "Redesigning the Aetna Healthcare Experience",
-    "desc": "I helped shape a new Aetna healthcare platform, using research and design to make care discovery, provider comparison and benefits easier to navigate.",
-    "focus": "UX Research \u00b7 Usability Testing \u00b7 Information Architecture \u00b7 Product Design",
+    "label": "Tuft & Needle: E-commerce & Growth",
+    "desc": "Tuft & Needle was evolving from a single-product mattress startup into a broader home brand, growing its catalog to 24 products. The digital experience needed to evolve with the business—making a growing assortment easier to discover, compare and purchase.\n\nOver three years, I shaped T&N's e-commerce experience across research, product strategy and design, eventually becoming Head of UX & Research. My work spanned the customer journey—from navigation and product discovery to comparison and checkout—with experimentation driving measurable business results.",
+    "focus": "UX Research · Product Strategy · Product Design · Experimentation",
     "platforms": [
       "Web",
       "Mobile"
     ],
     "meta": {
-      "years": "2014\u20132017"
+      "years": "2017–2020"
     },
+    "impact": [
+      { "value": "10×", "label": "Supported product growth, with navigation improvements driving up to +$20K/day in conversion revenue" }
+    ],
     "images": [
       {
-        "src": "images/img-12-9b8e5222bbed.jpg",
-        "caption": "Searching for care on a laptop"
+        "src": "images/img-24-f0d93c69ffc2.png",
+        "caption": "Checkout flow across contact, delivery, and payment"
       },
       {
-        "src": "images/img-13-5989ca4d18d3.jpg",
-        "caption": "Individual benefits and spending progress on mobile"
+        "src": "images/img-25-9b77d2490a7f.png",
+        "caption": "Comparing mattress models side by side"
       }
     ]
   },
   {
-    "label": "Using Customer Insights to Shape E-commerce",
-    "desc": "I established a research practice at Tuft & Needle, turning customer insights into an e-commerce roadmap spanning navigation, product comparison and checkout, with experimentation built into the process.",
-    "focus": "UX Research \u00b7 Product Strategy \u00b7 Product Design \u00b7 Experimentation",
+    "label": "Unifying Aetna’s Digital Health Experience",
+    "desc": "Aetna had invested in two digital health platforms with complementary capabilities: one helped people understand healthcare costs, while the other helped them find health information and care. When the two merged, Aetna needed to bring those fragmented experiences together into a single product.\n\nI worked across research and product design to define how search, care discovery, provider information, pricing and benefits could come together in one experience—helping people move from understanding a health need to finding and paying for care.",
+    "focus": "UX Research · Usability Testing · Information Architecture · Product Design",
     "platforms": [
       "Web",
       "Mobile"
     ],
     "meta": {
-      "years": "2017\u20132020"
+      "years": "2014–2017"
     },
     "images": [
       {
-        "src": "images/img-14-1ae802227747.jpg",
-        "caption": "Comparing mattresses on a laptop at home"
+        "src": "images/img-aetna-provider-2b7f9e14.jpg",
+        "caption": "Finding a provider's location, pricing and reviews across mobile and web"
       },
       {
-        "src": "images/img-15-cacee4e45529.jpg",
-        "caption": "Checkout flow across contact, delivery, and payment"
+        "src": "images/img-aetna-benefits-8a3d6c05.jpg",
+        "caption": "Tracking deductible and spending progress across mobile and web"
       }
     ]
   }
@@ -689,11 +649,17 @@
     const wrap = document.createElement('div');
     wrap.className = cls || 'work-row';
 
-    const media = item.images.map(img =>
-      '<div class="work-media-item">'+
-        '<img src="'+img.src+'" alt="'+item.label+(img.caption ? ' — '+img.caption : '')+'">'+
-      '</div>'
-    ).join('');
+    const media = item.images.map(img => {
+      const label = item.label+(img.caption ? ' — '+img.caption : '');
+      if (img.type === 'video') {
+        return '<div class="work-media-item">'+
+          '<video class="work-media-video" src="'+img.src+'"'+(img.poster ? ' poster="'+img.poster+'"' : '')+' autoplay muted loop playsinline aria-label="'+label+'"></video>'+
+        '</div>';
+      }
+      return '<div class="work-media-item">'+
+        '<img src="'+img.src+'" alt="'+label+'">'+
+      '</div>';
+    }).join('');
 
     const navHtml = item.images.length > 1
       ? '<div class="work-nav">'+
@@ -710,43 +676,40 @@
 
     const dateLine = item.meta.years;
 
-    const COMPACT_META = {
-      'Redesigning the Aetna Healthcare Experience': [
-        '2014–2017 · Web + Mobile',
-        'UX Research · Information Architecture · Product Design'
-      ],
-      'Using Customer Insights to Shape E-commerce': [
-        '2017–2020 · Web + Mobile',
-        'UX Research · Product Strategy · Product Design · Experimentation'
-      ]
-    };
-    const MEDIA_FIRST = ['Using Customer Insights to Shape E-commerce', 'Redesigning the Aetna Healthcare Experience'];
-    let metaHtml;
-    if (COMPACT_META[item.label]) {
-      metaHtml = '<div class="work-meta-compact">'+
-        COMPACT_META[item.label].map(line => '<div class="meta-line">'+line+'</div>').join('')+
-      '</div>';
-    } else {
-      const rowsHtml = [];
-      rowsHtml.push('<div class="meta-row"><div class="meta-label">Years</div><div class="meta-value">'+dateLine+'</div></div>');
-      if (platformsList.length) {
-        rowsHtml.push('<div class="meta-row"><div class="meta-label">Platforms</div><div class="meta-value">'+platformsList.join(' · ')+'</div></div>');
-      }
-      if (item.focus) {
-        rowsHtml.push('<div class="meta-row"><div class="meta-label">Focus</div><div class="meta-value">'+item.focus+'</div></div>');
-      }
-      if (item.links && item.links.length) {
-        const linkHtml = item.links.map(l => '<a href="'+l.url+'" target="_blank" rel="noopener">'+l.source+' <span class="arrow">&#8599;</span></a>').join('');
-        rowsHtml.push('<div class="meta-row"><div class="meta-label">Media</div><div class="meta-value press-links">'+linkHtml+'</div></div>');
-      }
-      metaHtml = '<div class="work-meta-table">'+rowsHtml.join('')+'</div>';
+    const linksHtml = (item.links && item.links.length)
+      ? item.links.map(l => '<a href="'+l.url+'" target="_blank" rel="noopener">'+l.source+' <span class="arrow">&#8599;</span></a>').join('')
+      : '';
+
+    const yearPillHtml = '<div class="year-pill">'+dateLine+'</div>';
+
+    // Classic per-row meta table (Platforms/Focus/Impact/Media), beside the carousel,
+    // same for every project. Years now shows as a pill above the title instead.
+    const rowsHtml = [];
+    if (platformsList.length) {
+      rowsHtml.push('<div class="meta-row"><div class="meta-label">Platforms</div><div class="meta-value">'+platformsList.join(' · ')+'</div></div>');
     }
+    if (item.focus) {
+      rowsHtml.push('<div class="meta-row"><div class="meta-label">Focus</div><div class="meta-value">'+item.focus+'</div></div>');
+    }
+    if (item.impact && item.impact.length) {
+      const impactValue = '<div class="meta-value-lines">'+
+        item.impact.map(m => '<div><strong>'+m.value+'</strong> '+m.label+'</div>').join('')+
+        '</div>';
+      rowsHtml.push('<div class="meta-row"><div class="meta-label">Results</div><div class="meta-value">'+impactValue+'</div></div>');
+    }
+    if (linksHtml) {
+      rowsHtml.push('<div class="meta-row"><div class="meta-label">Media</div><div class="meta-value press-links">'+linksHtml+'</div></div>');
+    }
+    const metaHtml = '<div class="work-meta-table">'+rowsHtml.join('')+'</div>';
+
     const infoHtml =
       '<div class="work-info">'+
+        yearPillHtml+
         '<div class="work-title t-title">'+item.label+'</div>'+
-        '<p class="work-desc t-small">'+item.desc+'</p>'+
+        item.desc.split('\n\n').map(p => '<p class="work-desc t-small">'+p+'</p>').join('')+
         metaHtml+
       '</div>';
+
     const mediaBlockHtml =
       '<div class="work-media">'+
         '<div class="work-viewport">'+
@@ -755,34 +718,44 @@
         '</div>'+
         navHtml+
       '</div>';
-    wrap.innerHTML = MEDIA_FIRST.includes(item.label)
-      ? mediaBlockHtml + infoHtml
-      : infoHtml + mediaBlockHtml;
+
+    wrap.innerHTML = infoHtml + mediaBlockHtml;
 
     const mediaEl = wrap.querySelector('.work-media');
     const trackEl = wrap.querySelector('.work-track');
-    const mediaImgs = Array.from(trackEl.querySelectorAll('img'));
+    const mediaImgs = Array.from(trackEl.querySelectorAll('img, video'));
     const slides = Array.from(trackEl.querySelectorAll('.work-media-item'));
     const dots = Array.from(wrap.querySelectorAll('.work-dot'));
+
+    const mediaDims = el => el.tagName === 'VIDEO'
+      ? [el.videoWidth, el.videoHeight]
+      : [el.naturalWidth, el.naturalHeight];
+    const mediaReady = el => el.tagName === 'VIDEO'
+      ? el.readyState >= 1 && el.videoWidth
+      : el.complete && el.naturalWidth;
 
     const fitMediaHeight = () => {
       if (!mediaImgs.length) return;
       const mediaWidth = trackEl.clientWidth;
       if (!mediaWidth) return;
       let maxH = 0;
-      mediaImgs.forEach(img => {
-        if (img.naturalWidth && img.naturalHeight) {
-          const h = mediaWidth * (img.naturalHeight / img.naturalWidth);
+      mediaImgs.forEach(el => {
+        const [w, h0] = mediaDims(el);
+        if (w && h0) {
+          const h = mediaWidth * (h0 / w);
           if (h > maxH) maxH = h;
         }
       });
       if (maxH > 0) {
-        const clamped = Math.max(220, Math.min(560, Math.round(maxH)));
+        const clamped = Math.max(220, Math.min(700, Math.round(maxH)));
         mediaEl.style.setProperty('--media-h', clamped + 'px');
       }
     };
-    mediaImgs.forEach(img => {
-      if (!(img.complete && img.naturalWidth)) img.addEventListener('load', () => { fitMediaHeight(); }, {once:true});
+    mediaImgs.forEach(el => {
+      if (!mediaReady(el)) {
+        const evt = el.tagName === 'VIDEO' ? 'loadedmetadata' : 'load';
+        el.addEventListener(evt, () => { fitMediaHeight(); }, {once:true});
+      }
     });
     fitMediaHeight();
 
@@ -820,68 +793,7 @@
 
     return wrap;
   }
-  function equalizeStatsStart(wrap){
-    const halves = wrap.querySelectorAll('.work-half');
-    if (halves.length !== 2) return;
-    const descs = Array.from(halves).map(h => h.querySelector('.work-desc'));
-    descs.forEach(d => { if (d) d.style.marginBottom = ''; });
-    const metaTops = Array.from(halves).map((h, i) => {
-      const meta = h.querySelector('.work-meta-table, .work-meta-compact');
-      const info = h.querySelector('.work-info');
-      if (!meta || !info) return 0;
-      return meta.getBoundingClientRect().top - info.getBoundingClientRect().top;
-    });
-    const maxTop = Math.max.apply(null, metaTops);
-    halves.forEach((h, i) => {
-      const diff = maxTop - metaTops[i];
-      if (diff > 0.5 && descs[i]) {
-        descs[i].style.marginBottom = diff + 'px';
-      }
-    });
-  }
-  function pairRow(itemA, itemB){
-    const wrap = document.createElement('div');
-    wrap.className = 'work-row-pair';
-    const a = row(itemA, 0, 'work-half');
-    const b = row(itemB, 0, 'work-half');
-    wrap.appendChild(a);
-    wrap.appendChild(b);
-    wrap._fitMedia = () => {
-      a._fitMedia && a._fitMedia();
-      b._fitMedia && b._fitMedia();
-      equalizeStatsStart(wrap);
-    };
-    requestAnimationFrame(() => equalizeStatsStart(wrap));
-    return wrap;
-  }
-  function sectionDivider(title, sub){
-    const d = document.createElement('div');
-    d.className = 'work-section-divider';
-    d.innerHTML =
-      '<div class="work-section-head">'+
-        '<h3 class="work-section-title">'+title+'</h3>'+
-        '<span class="work-section-rule" aria-hidden="true"></span>'+
-      '</div>'+
-      (sub ? '<p class="work-section-sub">'+sub+'</p>' : '');
-    return d;
-  }
-  const PAIRED_LABELS = ['Redesigning the Aetna Healthcare Experience', 'Using Customer Insights to Shape E-commerce'];
-  const rows = [];
-  for (let i = 0; i < items.length; i++) {
-    const it = items[i];
-    if (PAIRED_LABELS.includes(it.label) && i + 1 < items.length && PAIRED_LABELS.includes(items[i+1].label)) {
-      const prevRow = rows[rows.length - 1];
-      if (prevRow && prevRow.classList.contains('work-row')) {
-        prevRow.style.borderBottom = 'none';
-        prevRow.style.paddingBottom = '0';
-      }
-      rows.push(sectionDivider('Earlier Work', 'Selected projects across healthcare and e-commerce.'));
-      rows.push(pairRow(it, items[i+1]));
-      i++;
-    } else {
-      rows.push(row(it, i));
-    }
-  }
+  const rows = items.map((it, i) => row(it, i));
   rows.forEach(r => track.appendChild(r));
   let mediaResizeTimer;
   window.addEventListener('resize', () => {
@@ -913,160 +825,17 @@
     logoGrid.appendChild(tile);
   });
 
-  // ---- Hero: headline verb types in and deletes like a typewriter ----
+  // ---- Nav height var: keeps sticky-nav-aware scroll-margins accurate on resize ----
   (function(){
-    const phraseEl = document.getElementById('heroCycleText');
-    if (!phraseEl) return;
-    const heroSection = document.querySelector('.hero');
-    const phrases = [
-      "design",
-      "define",
-      "shape",
-      "rethink"
-    ];
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
-
-    const TYPE_MS = 220;
-    const DELETE_MS = 110;
-    const HOLD_MS = 2200;
-    const GAP_MS = 400;
-    let i = 0;
-    let timer = null;
-
-    function clearTimer(){ clearTimeout(timer); }
-
-    const greetingEl = document.querySelector('.hero-greeting');
-    function finish(){
-      phraseEl.classList.add('is-done');
-      if (greetingEl) {
-        greetingEl.classList.remove('sparkle');
-        // force reflow so the animation can replay on repeat triggers
-        void greetingEl.offsetWidth;
-        greetingEl.classList.add('sparkle');
-      }
-    }
-
-    function typePhrase(text, cb){
-      let pos = phraseEl.textContent.length;
-      (function step(){
-        pos++;
-        phraseEl.textContent = text.slice(0, pos);
-        if (pos < text.length) {
-          timer = setTimeout(step, TYPE_MS);
-        } else if (cb) {
-          cb();
-        }
-      })();
-    }
-
-    function deletePhrase(cb){
-      (function step(){
-        const cur = phraseEl.textContent;
-        if (cur.length > 0) {
-          phraseEl.textContent = cur.slice(0, -1);
-          timer = setTimeout(step, DELETE_MS);
-        } else {
-          cb();
-        }
-      })();
-    }
-
-    function cycle(){
-      timer = setTimeout(() => {
-        deletePhrase(() => {
-          i = (i + 1) % phrases.length;
-          timer = setTimeout(() => {
-            // Once the cycle wraps back around to the first word ("design"),
-            // type it back in and stop — one full loop through the list, then rest.
-            typePhrase(phrases[i], i === 0 ? finish : cycle);
-          }, GAP_MS);
-        });
-      }, HOLD_MS);
-    }
-
-    // Play the full cycle from the top every time the hero enters view —
-    // on first load, and again whenever it's scrolled out and back in.
-    function startCycle(){
-      clearTimer();
-      i = 0;
-      phraseEl.classList.remove('is-done');
-      phraseEl.textContent = phrases[0];
-      cycle();
-    }
-
-    if ('IntersectionObserver' in window && heroSection) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            startCycle();
-          } else {
-            clearTimer();
-          }
-        });
-      }, {threshold: 0.4});
-      io.observe(heroSection);
-    } else {
-      startCycle();
-    }
-  })();
-
-  // ---- Custom dot cursor: blue by default, flips white over blue surfaces ----
-  (function(){
-    const canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!canHover) return;
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return;
-
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    document.documentElement.classList.add('custom-cursor-active');
-
-    const BLUE_SELECTOR = '.btn, .accent, .accent-mark, .headline-cycle, .meta-value a, .press-links a, .work-dot.active';
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.opacity = '1';
-      cursor.style.transform = 'translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      const onBlue = el && el.closest && el.closest(BLUE_SELECTOR);
-      cursor.classList.toggle('on-blue', !!onBlue);
-    }, {passive:true});
-
-    document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
-  })();
-
-  // ---- Nav: sit over the dark hero at rest, switch to white as soon as scrolling starts ----
-  (function(){
-    const heroEl = document.querySelector('.hero');
     const navEl = document.querySelector('header.top');
-    if (!heroEl || !navEl) return;
+    if (!navEl) return;
 
     function setNavHeightVar(){
       document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
     }
 
-    let ticking = false;
-    function update(){
-      navEl.classList.toggle('on-dark', window.scrollY <= 2);
-      ticking = false;
-    }
-    function onScroll(){
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }
-    function onResize(){
-      setNavHeightVar();
-      onScroll();
-    }
-
     setNavHeightVar();
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', onResize);
-    update();
+    window.addEventListener('resize', setNavHeightVar);
   })();
 
   // ---- Gentle settle: if the scroll comes to rest in the gap between the
@@ -1107,6 +876,98 @@
     }
 
     window.addEventListener('scroll', onGapScroll, {passive:true});
+  })();
+
+  (function(){
+    const el = document.querySelector('.logo');
+    if (!el) return;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const original = el.textContent;
+    const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let raf = null;
+    let frame = 0;
+    let queue = [];
+
+    function buildQueue(){
+      queue = original.split('').map((char, i) => {
+        if (char === ' ') return { char, start: 0, end: 0, locked: true };
+        const start = Math.floor(Math.random() * 8) + i * 1.2;
+        const end = start + Math.floor(Math.random() * 10) + 8;
+        return { char, start, end, locked: false, current: '' };
+      });
+    }
+
+    function render(){
+      let done = true;
+      const out = queue.map(item => {
+        if (item.locked) return item.char;
+        if (frame >= item.end) { item.locked = true; return item.char; }
+        done = false;
+        if (frame >= item.start) {
+          item.current = scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+          return item.current;
+        }
+        return item.char;
+      }).join('');
+      el.textContent = out;
+      if (done) {
+        el.textContent = original;
+        raf = null;
+        return;
+      }
+      frame++;
+      raf = requestAnimationFrame(render);
+    }
+
+    el.setAttribute('aria-label', original);
+    el.addEventListener('mouseenter', () => {
+      if (raf) cancelAnimationFrame(raf);
+      frame = 0;
+      buildQueue();
+      render();
+    });
+  })();
+
+  (function(){
+    const viewport = document.querySelector('.quote-viewport');
+    if (!viewport) return;
+    const trackEl = viewport.querySelector('.quote-track');
+    const slides = Array.from(trackEl.querySelectorAll('.quote-slide'));
+    const dots = Array.from(document.querySelectorAll('.quote-dot'));
+    if (slides.length <= 1) return;
+
+    let current = 0;
+    const goTo = (i) => {
+      current = Math.max(0, Math.min(slides.length - 1, i));
+      trackEl.scrollTo({left: current * trackEl.clientWidth, behavior:'smooth'});
+    };
+    const tapPrev = viewport.querySelector('.tap-prev');
+    const tapNext = viewport.querySelector('.tap-next');
+    const updateActive = () => {
+      const w = trackEl.clientWidth || 1;
+      const idx = Math.round(trackEl.scrollLeft / w);
+      current = Math.max(0, Math.min(slides.length - 1, idx));
+      dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+      if (tapPrev) tapPrev.classList.toggle('at-edge', current === 0);
+      if (tapNext) tapNext.classList.toggle('at-edge', current === slides.length - 1);
+    };
+    dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.i,10))));
+    if (tapPrev) tapPrev.addEventListener('click', () => goTo(current - 1));
+    if (tapNext) tapNext.addEventListener('click', () => goTo(current + 1));
+    let scrollTimer;
+    trackEl.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(updateActive, 80);
+    });
+    updateActive();
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => trackEl.scrollTo({left: current * trackEl.clientWidth}), 150);
+    });
   })();
 
 </script>
